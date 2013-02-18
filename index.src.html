@@ -79,7 +79,7 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
       <p>An <code>app:</code> URI is a safer alternative to the <span>file URL scheme</span>, as it does not  allow addressing outside a   sand-boxed environment. Additionally, it does not expose the location of a file on user's local device, nor their user name, as in the case with some Unix-based implementations (e.g., as happens on Mac Os X). </p>
     </li>
   <li>
-      <p>An <code>app:</code> URI can serve as a <a href="http://www.w3.org/TR/html5/single-page.html#the-document's-address">document's address</a>, which can serve as the <a href="http://dev.w3.org/html5/spec/Overview.html#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://dev.w3.org/html5/spec/Overview.html#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
+      <p>An <code>app:</code> URI can serve as a <a href="http://www.w3.org/TR/html5/single-page.html#the-document's-address">document's address</a>, which can serve as the <a href="http://www.w3.org/TR/html5/single-page.html#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://www.w3.org/TR/html5/single-page.html#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
     </li>
   <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XMLHTTPRequest]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied).</li>
 </ol>
@@ -102,7 +102,7 @@ console.log(loc.pathname === &quot;/index.html&quot;); //true
 console.log(loc.hash === &quot;#example&quot;); //true 
 console.log(loc.port === &quot;&quot;); //true
 &lt;/script&gt;</code></pre>
-  <p>This example shows an <span> <code>app:</code> URI</span> being <a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">resolved</a> in <span>[HTML]</span>.</p>
+  <p>This example shows an <span> <code>app:</code> URI</span> being <a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">resolved</a> in <span>[HTML]</span>.</p>
   <pre>
 <code>var img = document.createElement(&quot;img&quot;);
 
@@ -199,7 +199,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
     <p>Let <var>URI</var> be the value of the <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request URI</a>. </p>
   </li>
   <li>
-    <p><a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://dev.w3.org/html5/spec/Overview.html#absolute-url">absolute URL</a>. </p>
+    <p><a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://www.w3.org/TR/html5/single-page.html#absolute-url">absolute URL</a>. </p>
   </li>
   <li>
     <p>If the <em> URI</em> does not conform to the <code>appuri</code> ABNF, return a <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> <span>response</span> and terminate this algorithm. </p>
