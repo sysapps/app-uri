@@ -144,7 +144,7 @@ xhr.send();
   a <span>user agent</span>. </p>
   <!-- OddPage -->
   <h2>User agent</h2>
-  <p>A <dfn>user agent</dfn> is an implementation of this specification that is able to <span title="synthesizing">synthesizen <code>app:</code> URIs</span> as well as <span title="rules for dereferencing an <code>app:</code> URI">dereference</span> them. </p>
+  <p>A <dfn>user agent</dfn> is an implementation of this specification that is able to <span title="synthesizing">synthesizen <code>app:</code> URIs</span> as well as <span title="rules for dereferencing an app: URI">dereference</span> them. </p>
   <!-- OddPage -->
   <h2>Package</h2>
   <p>A <dfn>package</dfn> is the logical container that contains the files being addressed via the <code>app:</code> uri scheme. </p>
@@ -178,7 +178,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
 <p> The reason for having a unique authority is, amongst other things, to prevent multiple instances from  overriding each other's data.</p>
 <p>It is <em class="rfc2119" title="recommended">recommended</em> that a <span title="uuid-spec">[UUID]</span> be used as the  value of the <span>authority</span> component. Doing so makes it improbably that two will be alike, and  also makes them hard to guess.</p>
 <h3>Query and Fragment components</h3>
-<p> The <code>query</code> and fragment <code>components</code>, when present, complement the <code>zip-relative-path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an <code>app:</code> URI">dereferencing</span>, the <code>query</code> and <code>fragment</code> components don't play any part in locating a file inside of package. </p>
+<p> The <code>query</code> and fragment <code>components</code>, when present, complement the <code>zip-relative-path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an app: URI">dereferencing</span>, the <code>query</code> and <code>fragment</code> components don't play any part in locating a file inside of package. </p>
 <p>For example, the followingn <code>app:</code> URIs all return the same file (example.gif):</p>
 <ul>
   <li><code>app://c1..66/example.gif?hello</code></li>

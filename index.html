@@ -135,7 +135,7 @@ xhr.send();
   a <a href="#user-agent-0">user agent</a>. </p>
   <!-- OddPage -->
   <h2 id="user-agent"><span class="secno">4 </span>User agent</h2>
-  <p>A <dfn id="user-agent-0">user agent</dfn> is an implementation of this specification that is able to <a href="#synthesizing" title="synthesizing">synthesizen <code>app:</code> URIs</a> as well as <span title="rules for dereferencing an <code>app:</code> URI">dereference</span> them. </p>
+  <p>A <dfn id="user-agent-0">user agent</dfn> is an implementation of this specification that is able to <a href="#synthesizing" title="synthesizing">synthesizen <code>app:</code> URIs</a> as well as <a href="#rules-for-dereferencing-an-app:-uri" title="rules for dereferencing an app: URI">dereference</a> them. </p>
   <!-- OddPage -->
   <h2 id="package"><span class="secno">5 </span>Package</h2>
   <p>A <dfn id="package-0">package</dfn> is the logical container that contains the files being addressed via the <code>app:</code> uri scheme. </p>
@@ -169,7 +169,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">path</df
 <p> The reason for having a unique authority is, amongst other things, to prevent multiple instances from  overriding each other's data.</p>
 <p>It is <em class="rfc2119" title="recommended">recommended</em> that a <a href="#uuid-spec" title="uuid-spec">[UUID]</a> be used as the  value of the <a href="#dfn-authority">authority</a> component. Doing so makes it improbably that two will be alike, and  also makes them hard to guess.</p>
 <h3 id="query-and-fragment-components"><span class="secno">6.3 </span>Query and Fragment components</h3>
-<p> The <code><a href="#query">query</a></code> and fragment <code>components</code>, when present, complement the <code>zip-relative-path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an <code>app:</code> URI">dereferencing</span>, the <code><a href="#query">query</a></code> and <code><a href="#fragment">fragment</a></code> components don't play any part in locating a file inside of package. </p>
+<p> The <code><a href="#query">query</a></code> and fragment <code>components</code>, when present, complement the <code>zip-relative-path</code> component in identifying a resource within a package. However, when <a href="#rules-for-dereferencing-an-app:-uri" title="rules for dereferencing an app: URI">dereferencing</a>, the <code><a href="#query">query</a></code> and <code><a href="#fragment">fragment</a></code> components don't play any part in locating a file inside of package. </p>
 <p>For example, the followingn <code>app:</code> URIs all return the same file (example.gif):</p>
 <ul>
   <li><code>app://c1..66/example.gif?hello</code></li>
