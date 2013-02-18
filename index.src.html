@@ -61,7 +61,7 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
   <!-- OddPage -->
   <h2>Introduction</h2>
   <p><em>This section is non-normative.</em></p>
-  <p>HTML applications  that run locally on a file system have traditionally relied on the <dfn>file URL scheme</dfn> of <span>[RFC1738]</span> as a <a href="http://www.w3.org/TR/html5/single-page.html#the-document's-address">document's address</a>. Although usable in a great deal of cases, relying on the <span>file URL scheme</span> has several serious drawbacks: </p>
+  <p>HTML applications  that run locally on a file system have traditionally relied on the <dfn>file URL scheme</dfn> of <span>[RFC1738]</span> as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>. Although usable in a great deal of cases, relying on the <span>file URL scheme</span> has several serious drawbacks: </p>
   <ul>
   <li>
       <p><strong>Lack of HTTP response semantics:</strong> meaning that it is not possible to use, for instance, <span>[XMLHTTPRequest]</span> to retrieve resources from within a package.</p>
@@ -69,7 +69,7 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
   <li>
       <p><strong>Security/privacy issues: </strong>on Unix systems, naive implementations  expose the user name as part of the path, as well as the full path on the file system to where a file is residing  (e.g., &quot;/Users/<strong>username</strong>/app/index.html&quot;). In addition, the <span>file URL scheme</span> potentially opens up the ability for an attacker to address any file on the file system. </p>
     </li>
-  <li><strong>Undefined security model:</strong> The HTML specification lacks a security model definition for when the <span>file URL scheme</span> is used  as a <a href="http://www.w3.org/TR/html5/single-page.html#the-document's-address">document's address</a>, meaning that different user agents behave inconsistently when content is loaded using the <span>file URL scheme</span> (e.g., same origin policy doesn't apply, local storage areas of <span>[WebStorage]</span> don't work as expected if at all, and so on). </li>
+  <li><strong>Undefined security model:</strong> The HTML specification lacks a security model definition for when the <span>file URL scheme</span> is used  as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>, meaning that different user agents behave inconsistently when content is loaded using the <span>file URL scheme</span> (e.g., same origin policy doesn't apply, local storage areas of <span>[WebStorage]</span> don't work as expected if at all, and so on). </li>
 </ul>
   <p>As stated by <span>[RFC1738]</span>:</p>
   <blockquote><q>The <span>file URL scheme</span> is unusual in that it does not specify an    Internet protocol or access method for such files; as such, its    utility in network protocols between hosts is limited.</q></blockquote>
@@ -79,7 +79,7 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
       <p>An <code>app:</code> URI is a safer alternative to the <span>file URL scheme</span>, as it does not  allow addressing outside a   sand-boxed environment. Additionally, it does not expose the location of a file on user's local device, nor their user name, as in the case with some Unix-based implementations (e.g., as happens on Mac Os X). </p>
     </li>
   <li>
-      <p>An <code>app:</code> URI can serve as a <a href="http://www.w3.org/TR/html5/single-page.html#the-document's-address">document's address</a>, which can serve as the <a href="http://www.w3.org/TR/html5/single-page.html#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://www.w3.org/TR/html5/single-page.html#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
+      <p>An <code>app:</code> URI can serve as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>, which can serve as the <a href="http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://www.whatwg.org/specs/web-apps/current-work/#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
     </li>
   <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XMLHTTPRequest]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied).</li>
 </ol>
@@ -102,7 +102,7 @@ console.log(loc.pathname === &quot;/index.html&quot;); //true
 console.log(loc.hash === &quot;#example&quot;); //true 
 console.log(loc.port === &quot;&quot;); //true
 &lt;/script&gt;</code></pre>
-  <p>This example shows an <span> <code>app:</code> URI</span> being <a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">resolved</a> in <span>[HTML]</span>.</p>
+  <p>This example shows an <span> <code>app:</code> URI</span> being <a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolved</a> in <span>[HTML]</span>.</p>
   <pre>
 <code>var img = document.createElement(&quot;img&quot;);
 
@@ -178,7 +178,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
 <p> The reason for having a unique authority is, amongst other things, to prevent multiple instances from  overriding each other's data.</p>
 <p>It is <em class="rfc2119" title="recommended">recommended</em> that a <span title="uuid-spec">[UUID]</span> be used as the  value of the <span>authority</span> component. Doing so makes it improbably that two will be alike, and  also makes them hard to guess.</p>
 <h3>Query and Fragment components</h3>
-<p> The <code>query</code> and fragment <code>components</code>, when present, complement the <code>zip-relative-path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an app: URI">dereferencing</span>, the <code>query</code> and <code>fragment</code> components don't play any part in locating a file inside of package. </p>
+<p> The <code>query</code> and fragment <code>components</code>, when present, complement the <code>path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an app: URI">dereferencing</span>, the <code>query</code> and <code>fragment</code> components don't play any part in locating a file inside of package. </p>
 <p>For example, the followingn <code>app:</code> URIs all return the same file (example.gif):</p>
 <ul>
   <li><code>app://c1..66/example.gif?hello</code></li>
@@ -199,7 +199,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
     <p>Let <var>URI</var> be the value of the <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request URI</a>. </p>
   </li>
   <li>
-    <p><a href="http://www.w3.org/TR/html5/single-page.html#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://www.w3.org/TR/html5/single-page.html#absolute-url">absolute URL</a>. </p>
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://www.whatwg.org/specs/web-apps/current-work/#absolute-url">absolute URL</a>. </p>
   </li>
   <li>
     <p>If the <em> URI</em> does not conform to the <code>appuri</code> ABNF, return a <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> <span>response</span> and terminate this algorithm. </p>
