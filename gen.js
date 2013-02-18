@@ -24,8 +24,7 @@ if (argv.hasOwnProperty('w3c') && argv.w3c) {
         argv.type = 'WD';
     }
 
-    //Take out all RICG stuff if we are targetting W3C
-    filter = '.ricg';
+    filter = '.nopub';
 
     //e.g., "WD_21Dec2012.html"
     output = 'pub/' + argv.type + '_' + argv.pubdate.split(' ').join('') + '.html';
