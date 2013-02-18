@@ -88,12 +88,12 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
 //Example using HTML's Location object
 var loc =  window.location; 
 console.log(loc.protocol === "app:"); //true 
-console.log(loc.host     === "c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
-console.log(loc.href     === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html"); //true 
-console.log(loc.origin   === "app://c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
+console.log(loc.host === "c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
+console.log(loc.href === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html"); //true 
+console.log(loc.origin === "app://c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
 console.log(loc.pathname === "/index.html"); //true 
-console.log(loc.hash     === "#example"); //true 
-console.log(loc.port     === ""); //true
+console.log(loc.hash === "#example"); //true 
+console.log(loc.port === ""); //true
 &lt;/script&gt;</code></pre>
   <p>This example shows an <a href="#app:-uri"> <code>app:</code> URI</a> being <a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">resolved</a> in <a href="#html">[HTML]</a>.</p>
   <pre><code>var img = document.createElement("img");

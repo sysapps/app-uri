@@ -95,12 +95,12 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
 //Example using HTML's Location object
 var loc =  window.location; 
 console.log(loc.protocol === &quot;app:&quot;); //true 
-console.log(loc.host     === &quot;c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
-console.log(loc.href     === &quot;app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html&quot;); //true 
-console.log(loc.origin   === &quot;app://c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
+console.log(loc.host === &quot;c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
+console.log(loc.href === &quot;app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html&quot;); //true 
+console.log(loc.origin === &quot;app://c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
 console.log(loc.pathname === &quot;/index.html&quot;); //true 
-console.log(loc.hash     === &quot;#example&quot;); //true 
-console.log(loc.port     === &quot;&quot;); //true
+console.log(loc.hash === &quot;#example&quot;); //true 
+console.log(loc.port === &quot;&quot;); //true
 &lt;/script&gt;</code></pre>
   <p>This example shows an <span> <code>app:</code> URI</span> being <a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">resolved</a> in <span>[HTML]</span>.</p>
   <pre>
