@@ -46,7 +46,7 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
 <hr/>
 </div>
 <h2  class="no-num no-toc">Abstract</h2>
-This specification defines the <code>app:</code> uri scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). 
+This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). 
   The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <span>[XMLHTTPRequest]</span>.
 <h2 class="no-num no-toc">Status of This Document</h2>
 <p class="nopub">This document is a proposal. It has no official status.</p>
@@ -150,9 +150,9 @@ xhr.send();
   <p>A <dfn>package</dfn> is the logical container that contains the files being addressed via the <code>app:</code> uri scheme. </p>
   <h2>App URI</h2>
   <p>An <dfn> <code>app:</code> URI</dfn> is a string that conforms to the production of the following <span>[ABNF]</span>: </p>
-  <pre><dfn>appuri</dfn>    = scheme &quot;://&quot; <span>authority</span> <span>path</span> [ &quot;?&quot; <span>query</span> ] [ &quot;#&quot; <span>fragment</span> ]
-<dfn>scheme</dfn>       = &quot;app&quot;
-<span>authority</span>    = unreserved / uuid 
+  <pre><dfn>appuri</dfn> = scheme &quot;://&quot; <span>authority</span> <span>path</span> [ &quot;?&quot; <span>query</span> ] [ &quot;#&quot; <span>fragment</span> ]
+<dfn>scheme</dfn> = &quot;app&quot;
+<span>authority</span> = <span>unreserved</span> / <span>uuid</span> 
   </pre>
 Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></code>, <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code>, <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>, and <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code> are defined in <span>[IRI]</span>. And, and <code><dfn><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <span title="uuid-spec">[UUID]</span>.
 <h3>Synthesizing an <code>app:</code> URI</h3>
@@ -186,7 +186,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
   <li><code>app://c1..66/example.gif?hello#hi-there</code></li>
 </ul>
 <h3>Dereferencing and retrieval of files from a container</h3>
-<p>This section describes how a user agent retrieves files from inside a container by dereferencing an <code>app:</code> URI, and how a user agent handles error conditions (e.g., when a file is not found). The purpose of this dereferencing model is to make retrieval of files from a container &quot;look and feel&quot; to a user agent like a HTTP request (except the request and response are performed over &quot;<code>app://</code>&quot; instead of &quot;<code>http://</code>&quot;). </p>
+<p>This section describes how a user agent retrieves files from inside a container by dereferencing an <code>app:</code> URI, and how a user agent handles error conditions (e.g., when a file is not found). The purpose of this dereferencing model is to make retrieval of files from a container &quot;look and feel&quot; to a user agent like a HTTP request (except the request and response are performed over &quot;<code>app://</code>&quot; instead of &quot;<code title="">http://</code>&quot;). </p>
 <p>For simplicity, does not define any means for cache control for content inside a container (e.g., dealing with e-tags). However, a user agent <em class="ct">MAY</em> implement [HTTP] <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13">cache controls</a> if they so desire. </p>
 <p>A <dfn>response</dfn> means a <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">HTTP response</a> and can include any HTTP <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">response fields</a> (e.g., the name of the user agent as the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.38">Server:</a>) and any <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html#sec7.1">entity header fields</a> the user agent deems will be helpful to a developer (e.g., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">Content-Length</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.29">Last-Modified</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.18">Date</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">Content-Encoding</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.15">Content-MD5</a>). In the case of an error in the request (i.e., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">status codes</a> 500, 501, 400, 404), the user agent <em class="ct">MAY</em> include a  message describing the error in the <span>[HTTP]</span> response body. </p>
 <p>To dereference a app <span>URI</span> to a file in a app package a <a>user agent </a> <em class="rfc2119" title="must">must</em> apply the <span>rules for dereferencing an <code>app:</code> URI</span>.</p>
