@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head>
+<meta charset="UTF-8">
 <title>The app: URI scheme</title>
-<meta charset="UTF-8" />
-<link href="http://www.w3.org/StyleSheets/TR/w3c-unofficial.css" rel="stylesheet"/>
-</head>
+<link href="http://www.w3.org/StyleSheets/TR/w3c-unofficial.css" rel="stylesheet">
 <body>
 <div class="head">
   <p class="w3c"><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" /></a></p>
@@ -24,7 +21,7 @@
     <dt>This Version:</dt>
     <dd><a href="[VERSION]">[VERSION]</a></dd>
     <dt>Latest published version:</dt>
- 	<dd><a href="[LATEST]">[LATEST]</a></dd>
+ 	  <dd><a href="[LATEST]">[LATEST]</a></dd>
     <dt>Latest editor's draft:</dt>
     <dd><a href="http://marcoscaceres.github.com/app-uri/">http://marcoscaceres.github.com/app-uri/</a></dd>
     <dt>Previous version:</dt>
@@ -38,7 +35,7 @@
 <div class="nopub"><p class="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="http://i.creativecommons.org/p/zero/1.0/80x15.png"></a>
 To the extent possible under law, the editors have waived all copyright and
 related or neighboring rights to this work. In addition, as of
-[DATE], the editors have made this specification available
+[DATE], the editor has made this specification available
 under the
 <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at
@@ -46,20 +43,21 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
 <hr/>
 </div>
 <h2  class="no-num no-toc">Abstract</h2>
-This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). 
-  The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <span>[XMLHTTPRequest]</span>.
+<p>This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <span>[XMLHTTPRequest]</span>.</p>
 <h2 class="no-num no-toc">Status of This Document</h2>
 <p class="nopub">This document is a proposal. It has no official status.</p>
 <div class="w3c">
 <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em>  </p>
 
-  <p>This document was produced by the <a href="www.w3.org/2012/sysapps/">System Applications Working Group</a>. If you wish to make comments regarding this document, please send them to <a href="mailto:public-sysapps@w3.org">public-sysapps@w3.org</a> (<a href="mailto:public-sysapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-sysapps/">archives</a>). All feedback is welcome. </p>
-  <p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
+<p>This document was produced by the <a href="www.w3.org/2012/sysapps/">System Applications Working Group</a>. If you wish to make comments regarding this document, please send them to <a href="mailto:public-sysapps@w3.org">public-sysapps@w3.org</a> (<a href="mailto:public-sysapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-sysapps/">archives</a>). All feedback is welcome. </p>
+
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
 </div>
-  <h2 class="no-toc no-num">Table of Contents</h2>
-  <!-- toc --> 
-  <!-- OddPage -->
-  <h2>Introduction</h2>
+
+<h2 class="no-toc no-num">Table of Contents</h2>
+<!-- toc --> 
+
+<h2>Introduction</h2>
   <p><em>This section is non-normative.</em></p>
   <p>HTML applications  that run locally on a file system have traditionally relied on the <dfn>file URL scheme</dfn> of <span>[RFC1738]</span> as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>. Although usable in a great deal of cases, relying on the <span>file URL scheme</span> has several serious drawbacks: </p>
   <ul>
@@ -163,14 +161,14 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
 <p> For example, in the figure below two applications instances are created from one package, but instance has a unique authority:</p>
 <table width="87%" border="0" align="center" cellpadding="6" cellspacing="0">
   <tr>
-    <td width="15%" rowspan="2" align="center" style="border: 1px solid black; border-left: 0px solid"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br />
+    <td width="15%" rowspan="2" align="center" style="border: 1px solid black; border-left: 0px solid"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br>
         ToyApp.webapp</p></td>
-    <td width="18%" align="center" style="border-bottom: 1px solid black"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br />
+    <td width="18%" align="center" style="border-bottom: 1px solid black"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br>
       instance 1 </td>
     <td width="67%" style="border-bottom: 1px solid black"><code>app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html</code></td>
   </tr>
   <tr>
-    <td align="center"><img src="images/toy2.png" width="32" height="32" alt="app2" /> <br />
+    <td align="center"><img src="images/toy2.png" width="32" height="32" alt="app2" /> <br>
       instance 2</td>
     <td><code>app://ab52dda1-c0a8-43c1-bc76-2912307e7010/index.html</code></td>
   </tr>

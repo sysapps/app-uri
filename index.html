@@ -1,8 +1,6 @@
-<!DOCTYPE html><head>
+<!DOCTYPE html><meta charset="UTF-8">
 <title>The app: URI scheme</title>
-<meta charset="UTF-8">
 <link href="http://www.w3.org/StyleSheets/TR/w3c-unofficial.css" rel="stylesheet">
-</head>
 <body>
 <div class="head">
   <h1 class="no-num no-toc">The app: URI scheme</h1>
@@ -20,7 +18,7 @@
   <div class="nopub"><p class="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="http://i.creativecommons.org/p/zero/1.0/80x15.png"></a>
 To the extent possible under law, the editors have waived all copyright and
 related or neighboring rights to this work. In addition, as of
-19 February 2013, the editors have made this specification available
+19 February 2013, the editor has made this specification available
 under the
 <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at
@@ -28,12 +26,11 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
 <hr>
 </div>
 <h2 class="no-num no-toc" id="abstract">Abstract</h2>
-This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). 
-  The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <a href="#xmlhttprequest">[XMLHTTPRequest]</a>.
+<p>This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <a href="#xmlhttprequest">[XMLHTTPRequest]</a>.</p>
 <h2 class="no-num no-toc" id="status-of-this-document">Status of This Document</h2>
 <p class="nopub">This document is a proposal. It has no official status.</p>
 <h2 class="no-toc no-num" id="table-of-contents">Table of Contents</h2>
-  
+
 <!--begin-toc-->
 <ol class="toc">
  <li><a href="#introduction"><span class="secno">1 </span>Introduction</a></li>
@@ -52,8 +49,8 @@ This specification defines the <code>app:</code> URI scheme and rules for derefe
  <li><a class="no-num" href="#normative-references">Normative references</a></li>
  <li><a class="no-num" href="#informative-references">Informative references</a></ol>
 <!--end-toc--> 
-  <!-- OddPage -->
-  <h2 id="introduction"><span class="secno">1 </span>Introduction</h2>
+
+<h2 id="introduction"><span class="secno">1 </span>Introduction</h2>
   <p><em>This section is non-normative.</em></p>
   <p>HTML applications  that run locally on a file system have traditionally relied on the <dfn id="file-url-scheme">file URL scheme</dfn> of <a href="#rfc1738">[RFC1738]</a> as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>. Although usable in a great deal of cases, relying on the <a href="#file-url-scheme">file URL scheme</a> has several serious drawbacks: </p>
   <ul>
