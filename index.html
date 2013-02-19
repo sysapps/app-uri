@@ -143,9 +143,9 @@ xhr.send();
   <p>An <dfn id="app:-uri"> <code>app:</code> URI</dfn> is a string that conforms to the production of the following <a href="#abnf">[ABNF]</a>: </p>
   <pre><dfn id="appuri">appuri</dfn> = scheme "://" <a href="#dfn-authority">authority</a> <a href="#path">path</a> [ "?" <a href="#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
 <dfn id="scheme">scheme</dfn> = "app"
-<a href="#dfn-authority">authority</a> = <a href="#uuid">uuid</a> 
+<a href="#dfn-authority">authority</a> = <span>1*unreserved</span> / <a href="#uuid">uuid</a> 
   </pre>
-Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">path</dfn></a></code>, <code><dfn id="query"><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code> and <code><dfn id="fragment"><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code> are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id="uuid"><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
+Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">path</dfn></a></code>, <code><dfn id="query"><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code>, <code><dfn id="fragment"><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>, and <code><dfn id="unreserved"><a href="http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code> are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id="uuid"><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
 <h3 id="synthesizing-an-app:-uri"><span class="secno">6.1 </span>Synthesizing an <code>app:</code> URI</h3>
 <p>When <dfn id="synthesizing">synthesizing</dfn> an <a href="#app:-uri"> <code>app:</code> URI</a>, a user agent <em class="ct"><em class="rfc2119" title="must">must</em></em> generate a string that conforms to <code><a href="#appuri">appuri</a></code> normalize it using <a href="http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based normalization</a> defined in <a href="#iri">[IRI]</a>. </p>
 <h3 id="the-authority-component"><span class="secno">6.2 </span>The authority component</h3>
