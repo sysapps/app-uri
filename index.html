@@ -6,7 +6,7 @@
 <body>
 <div class="head">
   <h1 class="no-num no-toc">The app: URI scheme</h1>
-  <h2 class="no-num no-toc" id="living-standard-—-last-updated-18-february-2013">Living Standard — <span class="nopub">Last updated</span> 18 February 2013</h2>
+  <h2 class="no-num no-toc" id="living-standard-—-last-updated-19-february-2013">Living Standard — <span class="nopub">Last updated</span> 19 February 2013</h2>
   
   <dl class="nopub">
     <dt>This Version:</dt>
@@ -20,7 +20,7 @@
   <div class="nopub"><p class="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="http://i.creativecommons.org/p/zero/1.0/80x15.png"></a>
 To the extent possible under law, the editors have waived all copyright and
 related or neighboring rights to this work. In addition, as of
-18 February 2013, the editors have made this specification available
+19 February 2013, the editors have made this specification available
 under the
 <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at
@@ -143,9 +143,9 @@ xhr.send();
   <p>An <dfn id="app:-uri"> <code>app:</code> URI</dfn> is a string that conforms to the production of the following <a href="#abnf">[ABNF]</a>: </p>
   <pre><dfn id="appuri">appuri</dfn> = scheme "://" <a href="#dfn-authority">authority</a> <a href="#path">path</a> [ "?" <a href="#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
 <dfn id="scheme">scheme</dfn> = "app"
-<a href="#dfn-authority">authority</a> = <a href="#unreserved">unreserved</a> / <a href="#uuid">uuid</a> 
+<a href="#dfn-authority">authority</a> = <a href="#uuid">uuid</a> 
   </pre>
-Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">path</dfn></a></code>, <code><dfn id="query"><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code>, <code><dfn id="fragment"><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>, and <code><dfn id="unreserved"><a href="http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code> are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id="uuid"><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
+Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">path</dfn></a></code>, <code><dfn id="query"><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code> and <code><dfn id="fragment"><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code> are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id="uuid"><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
 <h3 id="synthesizing-an-app:-uri"><span class="secno">6.1 </span>Synthesizing an <code>app:</code> URI</h3>
 <p>When <dfn id="synthesizing">synthesizing</dfn> an <a href="#app:-uri"> <code>app:</code> URI</a>, a user agent <em class="ct"><em class="rfc2119" title="must">must</em></em> generate a string that conforms to <code><a href="#appuri">appuri</a></code> normalize it using <a href="http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based normalization</a> defined in <a href="#iri">[IRI]</a>. </p>
 <h3 id="the-authority-component"><span class="secno">6.2 </span>The authority component</h3>
