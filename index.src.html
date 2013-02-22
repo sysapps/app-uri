@@ -71,21 +71,32 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
 </ul>
   <p>As stated by <span>[RFC1738]</span>:</p>
   <blockquote><q>The <span>file URL scheme</span> is unusual in that it does not specify an    Internet protocol or access method for such files; as such, its    utility in network protocols between hosts is limited.</q></blockquote>
-  <p>To overcome the above limitations of the <span>file URL scheme</span>, this specification standardizes the <span><code>app:</code> URI</span> scheme and <span>rules for dereferencing an <code>app:</code> URI</span>. As a replacement technology for the <span>file URL scheme</span>,n <code>app:</code> URIs serve a number of functions: </p>
+  <p>To overcome the above limitations of the <span><code>file</code>: URL scheme</span>, this specification standardizes the <span><code>app:</code> URI</span> scheme and <span>rules for dereferencing an <code>app:</code> URI</span>. As a replacement technology for the <span>file URL scheme</span>, the <code>app:</code> URIs serve a number of functions: </p>
   <ol>
   <li>
-      <p>An <code>app:</code> URI is a safer alternative to the <span>file URL scheme</span>, as it does not  allow addressing outside a   sand-boxed environment. Additionally, it does not expose the location of a file on user's local device, nor their user name, as in the case with some Unix-based implementations (e.g., as happens on Mac Os X). </p>
+      <p>An <code>app:</code> URI is a safer alternative to the <span>file URL scheme</span>, as it does not  allow addressing outside a   sand-boxed environment. Additionally, it does not expose the location of a file on user's local device, nor their user name, as in the case with some Unix-based implementations. </p>
     </li>
   <li>
       <p>An <code>app:</code> URI can serve as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>, which can serve as the <a href="http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://www.whatwg.org/specs/web-apps/current-work/#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
     </li>
-  <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XMLHTTPRequest]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied).</li>
+  <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XMLHTTPRequest]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied for security reasons).</li>
 </ol>
   <h2 id="example-of-usage">Example of usage</h2>
   <p><em>This section is non-normative.</em></p>
-  <p>An example of an <span> <code>app:</code> URI</span> is: </p>
-  <p><code>app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html</code></p>
-  <p>Using then <code>app:</code> URI above, the following example shows [HTML]'s <code>window.location</code> using then <span> <code>app:</code> URI</span>. </p>
+<figure>
+  <table border="0" align="center" cellpadding="6" cellspacing="0">
+    <tr>
+      <td width="15%" align="center" style="border: 1px solid black; border-left: 0px solid"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br>
+        ToyApp.zip</p></td>
+      <td width="18%" align="center" style="border-bottom: 1px solid black"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br>
+        running instance </td>
+      <td width="67%" style="border-bottom: 1px solid black"><code>app://c13c...6f30/index.html</code></td>
+    </tr>
+  </table>
+  <figcaption>Given an packaged web application (ToyApp.zip), a user agent creates a  running instance with a unique app: URI.</figcaption>
+
+</figure>
+<p>Using then <code>app:</code> URI above, the following example shows [HTML]'s <code>window.location</code> using then <span> <code>app:</code> URI</span>. </p>
   <pre>
 <code>
 &lt;!doctype html&gt;
@@ -154,27 +165,12 @@ xhr.send();
   </pre>
 Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></code>, <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code>, <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>, and <code><dfn><a href="http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code> are defined in <span>[IRI]</span>. And, and <code><dfn><a href="http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is defined in <span title="uuid-spec">[UUID]</span>.
 <h3>Synthesizing an <code>app:</code> URI</h3>
-<p>When <dfn>synthesizing</dfn> an <span> <code>app:</code> URI</span>, a user agent <em class="ct"><em class="rfc2119" title="must">must</em></em> generate a string that conforms to <code>appuri</code> normalize it using <a href="http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based normalization</a> defined in <span>[IRI]</span>. </p>
+<p>When <dfn>synthesizing</dfn> an <span> <code>app:</code> URI</span>, a user agent <em class="ct"><em class="rfc2119" title="must">must</em></em> generate a string that conforms to <code>appuri</code>, and normalize it using <a href="http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based normalization</a> as defined in <span>[IRI]</span>. </p>
 <h3>The authority component</h3>
 <p>The <dfn id="dfn-authority">authority</dfn> is 
-  a unique identifier that represents the instance of a software application that is making use of then <code>app:</code> URI (e.g., in the case of a packaged web app, it represents an instance of an application). The identifier represented by the authority is   bound to an instance of an application for the life of that application instance: that is, until that instance is  destroyed (e.g., the application is uninstalled from an end-user's device). </p>
-<p> For example, in the figure below two applications instances are created from one package, but instance has a unique authority:</p>
-<table width="87%" border="0" align="center" cellpadding="6" cellspacing="0">
-  <tr>
-    <td width="15%" rowspan="2" align="center" style="border: 1px solid black; border-left: 0px solid"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br>
-        ToyApp.webapp</p></td>
-    <td width="18%" align="center" style="border-bottom: 1px solid black"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br>
-      instance 1 </td>
-    <td width="67%" style="border-bottom: 1px solid black"><code>app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html</code></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/toy2.png" width="32" height="32" alt="app2" /> <br>
-      instance 2</td>
-    <td><code>app://ab52dda1-c0a8-43c1-bc76-2912307e7010/index.html</code></td>
-  </tr>
-</table>
+  a unique identifier that represents the instance of a software application that is making use of then <code>app:</code> URI (e.g., in the case of a packaged web application, it represents an instance of an application). The identifier represented by the authority is   bound to an instance of an application for the life of that application instance: that is, until that instance is  destroyed (e.g., the application is uninstalled from an end-user's device).</p>
 <p> The reason for having a unique authority is, amongst other things, to prevent multiple instances from  overriding each other's data.</p>
-<p>It is <em class="rfc2119" title="recommended">recommended</em> that a <span title="uuid-spec">[UUID]</span> be used as the  value of the <span>authority</span> component. Doing so makes it improbably that two will be alike, and  also makes them hard to guess.</p>
+<p>It is <em class="rfc2119" title="recommended">recommended</em> that a <span title="uuid-spec">[UUID]</span> be used as the  value of the <span>authority</span> component (but it's not mandatory! Other types of authorities, like <a href="http://en.wikipedia.org/wiki/Reverse_domain_name_notation">reverse domain name notation</a>, are allowed). Using a <span>[UUID]</span> makes it improbable that  two URIs will be alike, and  also makes them hard to guess.</p>
 <h3>Query and Fragment components</h3>
 <p> The <code>query</code> and fragment <code>components</code>, when present, complement the <code>path</code> component in identifying a resource within a package. However, when <span title="rules for dereferencing an app: URI">dereferencing</span>, the <code>query</code> and <code>fragment</code> components don't play any part in locating a file inside of package. </p>
 <p>For example, the followingn <code>app:</code> URIs all return the same file (example.gif):</p>
@@ -184,10 +180,10 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
   <li><code>app://c1..66/example.gif?hello#hi-there</code></li>
 </ul>
 <h3>Dereferencing and retrieval of files from a container</h3>
-<p>This section describes how a user agent retrieves files from inside a container by dereferencing an <code>app:</code> URI, and how a user agent handles error conditions (e.g., when a file is not found). The purpose of this dereferencing model is to make retrieval of files from a container &quot;look and feel&quot; to a user agent like a HTTP request (except the request and response are performed over &quot;<code>app://</code>&quot; instead of &quot;<code title="">http://</code>&quot;). </p>
-<p>For simplicity, does not define any means for cache control for content inside a container (e.g., dealing with e-tags). However, a user agent <em class="ct">MAY</em> implement [HTTP] <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13">cache controls</a> if they so desire. </p>
+<p>This section describes how a user agent retrieves files from inside a container by dereferencing an <code>app:</code> URI, and how a user agent handles error conditions (e.g., when a file is not found). The purpose of this dereferencing model is to make retrieval of files from a container &quot;look and feel&quot; like a HTTP request (except the request and response are performed over &quot;<code>app://</code>&quot; instead of &quot;<code title="">http://</code>&quot;). </p>
+<p>For simplicity, this specification does not define any means for cache control for content inside a container (e.g., dealing with e-tags). However, a user agent <em class="ct">MAY</em> implement [HTTP] <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13">cache controls</a> if they so desire. </p>
 <p>A <dfn>response</dfn> means a <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">HTTP response</a> and can include any HTTP <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">response fields</a> (e.g., the name of the user agent as the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.38">Server:</a>) and any <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html#sec7.1">entity header fields</a> the user agent deems will be helpful to a developer (e.g., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">Content-Length</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.29">Last-Modified</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.18">Date</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">Content-Encoding</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.15">Content-MD5</a>). In the case of an error in the request (i.e., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">status codes</a> 500, 501, 400, 404), the user agent <em class="ct">MAY</em> include a  message describing the error in the <span>[HTTP]</span> response body. </p>
-<p>To dereference a app <span>URI</span> to a file in a app package a <a>user agent </a> <em class="rfc2119" title="must">must</em> apply the <span>rules for dereferencing an <code>app:</code> URI</span>.</p>
+<p>To dereference a app <span>URI</span> to a file in a app package a <a>user agent </a> <em class="rfc2119" title="must">MUST</em> apply the <span>rules for dereferencing an <code>app:</code> URI</span>.</p>
 <p>The <dfn>rules for dereferencing an <code>app:</code> URI</dfn> are as follows: </p>
 <ol>
   <li>
