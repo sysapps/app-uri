@@ -43,7 +43,7 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
 <hr/>
 </div>
 <h2  class="no-num no-toc">Abstract</h2>
-<p>This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <span>[XMLHTTPRequest]</span>.</p>
+<p>This specification defines the <code>app:</code> URI scheme and rules for dereferencing an <code>app:</code> URI, which can be used to address resources inside a package (e.g., a packaged web application). The dereferencing model relies on HTTP semantics to return resources  in a manner akin to a HTTP <code>GET</code> request. Doing so allows this URI scheme to be used with other technologies that rely on HTTP responses to function as intended, such as <span>[XHR]</span>.</p>
 <h2 class="no-num no-toc">Status of This Document</h2>
 <p class="nopub">This document is a proposal. It has no official status.</p>
 <div class="w3c">
@@ -62,7 +62,7 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
   <p>HTML applications  that run locally on a file system have traditionally relied on the <dfn>file URL scheme</dfn> of <span>[RFC1738]</span> as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>. Although usable in a great deal of cases, relying on the <span>file URL scheme</span> has several serious drawbacks: </p>
   <ul>
   <li>
-      <p><strong>Lack of HTTP response semantics:</strong> meaning that it is not possible to use, for instance, <span>[XMLHTTPRequest]</span> to retrieve resources from within a package.</p>
+      <p><strong>Lack of HTTP response semantics:</strong> meaning that it is not possible to use, for instance, <span>[XHR]</span> to retrieve resources from within a package.</p>
     </li>
   <li>
       <p><strong>Security/privacy issues: </strong>on Unix systems, naive implementations  expose the user name as part of the path, as well as the full path on the file system to where a file is residing  (e.g., &quot;/Users/<strong>username</strong>/app/index.html&quot;). In addition, the <span>file URL scheme</span> potentially opens up the ability for an attacker to address any file on the file system. </p>
@@ -79,21 +79,21 @@ http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.</p>
   <li>
       <p>An <code>app:</code> URI can serve as a <a href="http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">document's address</a>, which can serve as the <a href="http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a> for <span>[HTML]</span> or <span>[SVG]</span> applications. This enables the use of many features that rely on the <a href="http://www.whatwg.org/specs/web-apps/current-work/#same-origin">same-origin policy</a> (e.g., <span>[WebStorage]</span>) and allows a user agent to <a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolve</a> the attribute values of certain DOM elements (e.g., the <code>img</code> element's <code>src</code> attribute). </p>
     </li>
-  <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XMLHTTPRequest]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied for security reasons).</li>
+  <li>An <code>app:</code> URI provides  a means to retrieve a file from within a package using similar semantics to performing a <code>GET</code> request over <span>[HTTP]</span>. This allows  the <code>app:</code> URI scheme to be used with other technologies that rely on HTTP responses, such as <span>[XHR]</span>. It also allows the DOM elements to respond accordingly based on how resources are loaded or if a HTTP-like error occurs (e.g., firing an event when a resource is not found, or access is denied for security reasons).</li>
 </ol>
   <h2 id="example-of-usage">Example of usage</h2>
   <p><em>This section is non-normative.</em></p>
 <figure>
-  <table border="0" align="center" cellpadding="6" cellspacing="0">
+  <table border="1" align="center" cellpadding="6" cellspacing="0">
     <tr>
-      <td width="15%" align="center" style="border: 1px solid black; border-left: 0px solid"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br>
+      <td width="15%" align="center"><p><img src="images/gift.png" width="32" height="32" alt="package" /><br>
         ToyApp.zip</p></td>
-      <td width="18%" align="center" style="border-bottom: 1px solid black"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br>
+      <td  align="center"><img src="images/toy1.png" width="32" height="32" alt="app1" /> <br>
         running instance </td>
-      <td width="67%" style="border-bottom: 1px solid black"><code>app://c13c...6f30/index.html</code></td>
+      <td width="67%"  align="center"><code>app://c13c...6f30/index.html</code></td>
     </tr>
   </table>
-  <figcaption>Given an packaged web application (ToyApp.zip), a user agent creates a  running instance with a unique app: URI.</figcaption>
+  <figcaption>Given an packaged web application (ToyApp.zip), a user agent creates a  running instance with a unique <code>app:</code> URI.</figcaption>
 
 </figure>
 <p>Using then <code>app:</code> URI above, the following example shows [HTML]'s <code>window.location</code> using then <span> <code>app:</code> URI</span>. </p>
@@ -124,7 +124,7 @@ console.log(img.src === &quot;app://c13c6f30-ce25-11e0-9572-0800200c9a66/example
 //Append the image to the document
 document.body.appendChild(img); 
 &lt;/script&gt;</code></pre>
-  <p>This example shows a resource within a packaged application being retrieved over <span>[XMLHTTPRequest]</span>. </p>
+  <p>This example shows a resource within a packaged application being retrieved over <span>[XHR]</span>. </p>
   <pre>
 function process(data) {
   // process the resulting data 
@@ -146,7 +146,7 @@ xhr.open( &quot;GET&quot;, &quot;playlist.json&quot;);
 xhr.send();
   </pre>
   <!-- OddPage -->
-  <h2>Conformance</h2>
+<h2>Conformance</h2>
   <p>Everything  in this specification is normative except for  sections explicitly marked as non-normative, examples, and notes. </p>
   <p>The key words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="recommended">recommended</em>, and <em class="rfc2119" title="optional">optional</em> in this specification are to be interpreted as described in <span>[RFC2119</span>].</p>
   <p> There is one class of product that can claim conformance to this specification:
@@ -183,7 +183,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
 <p>This section describes how a user agent retrieves files from inside a container by dereferencing an <code>app:</code> URI, and how a user agent handles error conditions (e.g., when a file is not found). The purpose of this dereferencing model is to make retrieval of files from a container &quot;look and feel&quot; like a HTTP request (except the request and response are performed over &quot;<code>app://</code>&quot; instead of &quot;<code title="">http://</code>&quot;). </p>
 <p>For simplicity, this specification does not define any means for cache control for content inside a container (e.g., dealing with e-tags). However, a user agent <em class="ct">MAY</em> implement [HTTP] <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13">cache controls</a> if they so desire. </p>
 <p>A <dfn>response</dfn> means a <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">HTTP response</a> and can include any HTTP <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">response fields</a> (e.g., the name of the user agent as the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.38">Server:</a>) and any <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html#sec7.1">entity header fields</a> the user agent deems will be helpful to a developer (e.g., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">Content-Length</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.29">Last-Modified</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.18">Date</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">Content-Encoding</a>, <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.15">Content-MD5</a>). In the case of an error in the request (i.e., <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">status codes</a> 500, 501, 400, 404), the user agent <em class="ct">MAY</em> include a  message describing the error in the <span>[HTTP]</span> response body. </p>
-<p>To dereference a app <span>URI</span> to a file in a app package a <a>user agent </a> <em class="rfc2119" title="must">MUST</em> apply the <span>rules for dereferencing an <code>app:</code> URI</span>.</p>
+<p>To dereference a <code>app:</code> <span>URI</span> to a file in a app package a <a>user agent </a> <em class="rfc2119" title="must">MUST</em> apply the <span>rules for dereferencing an <code>app:</code> URI</span>.</p>
 <p>The <dfn>rules for dereferencing an <code>app:</code> URI</dfn> are as follows: </p>
 <ol>
   <li>
@@ -193,7 +193,7 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
     <p>Let <var>URI</var> be the value of the <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request URI</a>. </p>
   </li>
   <li>
-    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://www.whatwg.org/specs/web-apps/current-work/#absolute-url">absolute URL</a>. </p>
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a> <em>URI</em> into an <a href="http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>. </p>
   </li>
   <li>
     <p>If the <em> URI</em> does not conform to the <code>appuri</code> ABNF, return a <span>[HTTP]</span> <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> <span>response</span> and terminate this algorithm. </p>
@@ -233,22 +233,24 @@ Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></co
   <dd><a href="http://www.ietf.org/rfc/rfc5234.txt"><cite>Augmented BNF for Syntax
     Specifications: <abbr title="Augmented Backus-Naur Form">ABNF</abbr></cite></a>. IETF.</dd>
   <dt><dfn>[HTML]</dfn></dt>
-  <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML Standard</a></cite> (Work in progress).  WHATWG. </dd>
+  <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML Standard</a></cite>.  WHATWG. </dd>
   <dt><dfn>[HTTP]</dfn></dt>
-  <dd><a href="http://tools.ietf.org/html/rfc2616"><cite>Hypertext Transfer Protocol -- HTTP/1.1</cite></a> IETF.</dd>
+  <dd><a href="http://tools.ietf.org/html/rfc2616"><cite>Hypertext Transfer Protocol -- HTTP/1.1</cite></a>. IETF.</dd>
   <dt><dfn>[RFC2119]</dfn></dt>
   <dd><a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>.  IETF.</dd>
   <dt><dfn>[IRI]</dfn></dt>
   <dd><a href="http://tools.ietf.org/html/rfc3987"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>.  IETF.</dd>
   <dt><dfn>[SNIFF]</dfn></dt>
-  <dd><a href="http://tools.ietf.org/html/draft-ietf-websec-mime-sniff"><cite>Media Type Sniffing</cite></a> (Work in progress). IETF. </dd>
+  <dd><a href="http://mimesniff.spec.whatwg.org/"><cite>Media Type Sniffing</cite></a>. WHATWG. </dd>
   <dt><dfn title="uuid-spec">[UUID]</dfn></dt>
   <dd><a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique IDentifier (UUID) URN Namespace</cite></a>. IETF.</dd>
+  <dt>[URL]</dt>
+  <dd><a href="http://url.spec.whatwg.org/"><cite>URL. </cite></a> WHATWG.</dd>
 </dl>
 <h2 class="no-num">Informative references</h2>
 <dl class="bibliography">
-  <dt><dfn>[XMLHTTPRequest]</dfn></dt>
-  <dd><a href="http://dev.w3.org/2006/webapi/XMLHttpRequest/"><cite>XMLHttpRequest</cite></a> (Work in progress). W3C. </dd>
+  <dt><dfn>[XHR]</dfn></dt>
+  <dd><a href="http://www.w3.org/TR/XMLHttpRequest2/"><cite>XHR</cite></a> (Work in progress). W3C. </dd>
   <dt><dfn>[RFC1738]</dfn></dt>
   <dd><a href="http://www.ietf.org/rfc/rfc1738.txt"><cite>Uniform Resource Locators (URL)</cite></a> (Obselete). IETF.</dd>
   <dt><dfn>[SVG]</dfn></dt>
