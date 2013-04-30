@@ -13,8 +13,8 @@
       The app: URI scheme
     
       </h1>
-      <h2 class="no-num no-toc" id="editor's-draft-last-updated-19-april-2013">
-        <span>Editor's Draft</span> - Last updated 19 April 2013
+      <h2 class="no-num no-toc" id="editor's-draft-last-updated-30-april-2013">
+        <span>Editor's Draft</span> - Last updated 30 April 2013
       </h2>
       <dl class="nopub">
         <dt>
@@ -563,6 +563,20 @@ xhr.send();
       sure that a <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic
       link</a> (or similar) inside a package does not break out of the package
       and end up pointing to a physical file on the end-users device.
+    </p>
+    <p>
+      As this specification relies on the standardized heuristics for
+      determining the content type of files defined in the [[!SNIFF]]
+      specification, implementers need to consider the security considerations
+      discussed in the [[!SNIFF]] specification.
+    </p>
+    <p>
+      In addition, user agents need to be careful about trusting path
+      components found in the manifest. Such path components might be
+      interpreted by operating systems as pointing at security critical files
+      outside the browsing environment proper, and naive unpacking of zip
+      packages into the file system might lead to undesirable and security
+      relevant effects, such as overwriting of system files.
     </p>
     <h2 class="no-num" id="acknowledgements-0">
       Acknowledgements
