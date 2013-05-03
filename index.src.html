@@ -166,7 +166,7 @@ span{
       <li>
         <p>
           <strong>Security/privacy issues:</strong> on Unix systems, naive
-          implementations expose the user name as part of the path, as well as
+          implementations expose the username as part of the path, as well as
           the full path on the file system to where a file is residing (e.g.,
           "/Users/<strong>username</strong>/app/index.html"). In addition, the
           <span>file URL scheme</span> potentially opens up the ability for an
@@ -207,7 +207,7 @@ span{
           An <code>app:</code> URI is a safer alternative to the <span>file URL
           scheme</span>, as it does not allow addressing outside a sand-boxed
           environment. Additionally, it does not expose the location of a file
-          on user's local device, nor their user name, as in the case with some
+          on user's local device, nor their username, as in the case with some
           Unix-based implementations.
         </p>
       </li>
@@ -374,7 +374,7 @@ xhr.send();
     <pre>
 <dfn>appuri</dfn> = scheme "://" <span>authority</span> <span>path</span> [ "?" <span>query</span> ] [ "#" <span>fragment</span> ]
 <dfn>scheme</dfn> = "app"
-<span>authority</span> = <span>1*unreserved</span> / <span>uuid</span> 
+<span>authority</span> = 1*<span>unreserved</span> / <span>uuid</span> 
   
 </pre>Where <code><a href=
 "http://tools.ietf.org/html/rfc3986"><dfn>path</dfn></a></code>, <code><dfn>
@@ -413,8 +413,8 @@ xhr.send();
       How long the identifier represented by the authority is bound to an
       instance of an application is application specific (e.g., it may be reset
       when the user clears the user agent's private data, or can last until the
-      application is uninstalled from an end-user's device). See <span>privacy
-      and security considerations</span>.
+      application is uninstalled from an end-user's device). See <span title=
+      "privacy">privacy and security considerations</span>.
     </p>
     <p>
       The reason for having a unique authority is, amongst other things, to
@@ -434,15 +434,17 @@ xhr.send();
       Query and Fragment components
     </h3>
     <p>
-      The <code>query</code> and fragment <code>components</code>, when
-      present, complement the <code>path</code> component in identifying a
-      resource within a package. However, when <span title=
-      "rules for dereferencing an app: URI">dereferencing</span>, the
-      <code>query</code> and <code>fragment</code> components don't play any
-      part in locating a file inside of package.
+      The <a href="http://url.spec.whatwg.org/#concept-url-query">query</a> and
+      <a href="http://url.spec.whatwg.org/#concept-url-fragment">fragment</a>
+      components, when present, complement the <a href=
+      "http://url.spec.whatwg.org/#concept-url-path">path</a> component in
+      identifying a resource within a package <span>[URL]</span>. However, when
+      <span title="rules for dereferencing an app: URI">dereferencing</span>,
+      the <code>query</code> and <code>fragment</code> components don't play
+      any part in locating a file inside of package.
     </p>
     <p>
-      For example, the followingn <code>app:</code> URIs all return the same
+      For example, the following <code>app:</code> URIs all return the same
       file (example.gif):
     </p>
     <ul>
@@ -556,7 +558,7 @@ xhr.send();
         <p>
           If the <em>URI</em> uses the scheme '<code>app</code>', but the
           <span>authority</span> does not match the one assigned to this
-          <span>application</span>, return a <span>[HTTP]</span> <a href=
+          document, return a <span>[HTTP]</span> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403
           Forbidden</a> <span>response</span> and terminate this algorithm
           (i.e., prevent inter-application content access).
@@ -603,7 +605,8 @@ xhr.send();
           OK</a> <span>response</span>, with the value of
           <var>content-type</var> as the <span>[HTTP]</span> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
-          header, and with <var>potential-file</var> as the response body.
+          header, and with the contents of <var>potential-file</var> as the
+          response body.
         </p>
       </li>
     </ol>
@@ -614,29 +617,29 @@ xhr.send();
       <em>This section is non-normative.</em>
     </p>
     <p>
-      Because [[!UUID]]s used by the app: URI scheme are effectively a digital
-      finger print, an application developer could use a UUID to personally
-      identify a user. This can allow a developer to, for example, restore
-      cookies even if the user has cleared cookies from a user agent. As such,
-      user agents should provide end-users with a means of regenerating the
-      authority component of an app: URI. For example, the UUID for an
-      application could be regenerated every time the application is started.
-      Or the UUID could be regenerated when the user clears private data from
-      the user agent.
+      Because <span>[UUID]</span>s used by the app: URI scheme are effectively
+      a digital finger print, an application developer could use a UUID to
+      personally identify a user. This can allow a developer to, for example,
+      restore cookies even if the user has cleared cookies from a user agent.
+      As such, user agents should provide end-users with a means of
+      regenerating the authority component of an app: URI. For example, the
+      UUID for an application could be regenerated every time the application
+      is started. Or the UUID could be regenerated when the user clears private
+      data from the user agent.
     </p>
     <p>
       When dereferencing an <code>app:</code> URI, a user agent needs to make
       sure that only files that were in the package can be accessed (i.e.,
-      those files should be sandboxed). User agents need to watch out for
+      those files should be sand-boxed). User agents need to watch out for
       <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a>
       (or similar) inside a package, which can attempt to trick the user agent
       into accessing files that are on other parts of the file system.
     </p>
     <p>
       As this specification relies on the standardized heuristics for
-      determining the content type of files defined in the [[!SNIFF]]
-      specification, implementers need to consider the security considerations
-      discussed in the [[!SNIFF]] specification.
+      determining the content type of files defined in the <span>[SNIFF]</span>
+      specification, implementors need to consider the security considerations
+      discussed in the <span>[SNIFF]</span> specification.
     </p>
     <p>
       In addition, user agents need to be careful about trusting path
@@ -655,7 +658,7 @@ xhr.send();
       scheme</a></cite> specification. The Systems Application working group
       acknowledge the hard work of the <a href=
       "http://www.w3.org/2008/webapps/">Web Applications Working Group</a> in
-      laying down the fundations for this specification.
+      laying down the foundations for this specification.
     </p>
     <p>
       Graphic icons used some examples of this specification were created by
@@ -716,7 +719,7 @@ xhr.send();
       </dt>
       <dd>
         <a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique
-        IDentifier (UUID) URN Namespace</cite></a>. IETF.
+        Identifier (UUID) URN Namespace</cite></a>. IETF.
       </dd>
       <dt>
         [URL]
@@ -741,7 +744,7 @@ xhr.send();
       </dt>
       <dd>
         <a href="http://www.ietf.org/rfc/rfc1738.txt"><cite>Uniform Resource
-        Locators (URL)</cite></a> (Obselete). IETF.
+        Locators (URL)</cite></a> (Obsolete). IETF.
       </dd>
       <dt>
         <dfn>[SVG]</dfn>
