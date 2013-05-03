@@ -10,7 +10,7 @@
     <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
     "stylesheet">
     <style class="nopub">
-    span{
+span{
                 border: 1px dotted green;
         }
     </style>
@@ -405,10 +405,14 @@ xhr.send();
       The <dfn id="dfn-authority">authority</dfn> is a unique identifier that
       represents the instance of a software application that is making use of
       then <code>app:</code> URI (e.g., in the case of a packaged application,
-      it represents an instance of an application). The identifier represented
-      by the authority is bound to an instance of an application for the life
-      of that application instance: that is, until that instance is destroyed
-      (e.g., the application is uninstalled from an end-user's device).
+      it represents an instance of an application).
+    </p>
+    <p>
+      How long the identifier represented by the authority is bound to an
+      instance of an application is application specific (e.g., it may be reset
+      when the user clears the user agent's private data, or can last until the
+      application is uninstalled from an end-user's device). See <span>privacy
+      and security considerations</span>.
     </p>
     <p>
       The reason for having a unique authority is, amongst other things, to
@@ -534,7 +538,9 @@ xhr.send();
           <a href=
           "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a>
           <em>URI</em> into an <a href=
-          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a> using the document's origin as the base.</p>
+          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>
+          using the document's origin as the base.
+        </p>
       </li>
       <li>
         <p>
@@ -556,7 +562,8 @@ xhr.send();
       </li>
       <li>
         <p>
-        Let <var>path</var> be the <code>path</code> component of URI. </p>
+          Let <var>path</var> be the <code>path</code> component of URI.
+        </p>
       </li>
       <li>
         <p>
@@ -574,8 +581,9 @@ xhr.send();
       </li>
       <li>
         <p>
-          Otherwise, if retrieving <var>potential-file</var> results in an error (e.g., the
-          file is corrupt, locked, etc.), return a <span>[HTTP]</span> <a href=
+          Otherwise, if retrieving <var>potential-file</var> results in an
+          error (e.g., the file is corrupt, locked, etc.), return a
+          <span>[HTTP]</span> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500
           Internal Server Error</a> <span>response</span>.
         </p>
@@ -597,60 +605,22 @@ xhr.send();
         </p>
       </li>
     </ol>
-    <div class="example">
-      <div class="exampleHeader">
-        Example
-      </div>
-      <p>
-        Requests could look like this:
-      </p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">HEADERS</span>
-        </div>
-        <div class="blockContent">
-          <pre class="code">
-<code class="headers-code">
-        GET some/image.jpg
-        </code>
-</pre>
-        </div>
-      </div>
-      <p>
-        The user agent uses [SNIFF] to determine that the requested resource's
-        media type is <code class="headers-code">image/jpeg</code>. The user
-        agent also determines the content-length by checking the size of the
-        resource on disk. Then the following HTTP response headers are set.
-      </p>
-      <div class="block">
-        <div class="blockTitleDiv">
-          <span class="blockTitle">HEADERS</span>
-        </div>
-        <div class="blockContent">
-          <pre class="code">
-<code class="headers-code">
-  
-  200 OK
-  Content-Type: image/jpeg
-  Content-Length: 21897
-  
-  ....
-        </code>
-</pre>
-        </div>
-      </div>
-      <p>
-        If there is a <a href="#file-error-read">file error</a> or any other
-        kind of error associated with the <a href=
-        "#dfn-fileBlob"><code>blob</code></a>, then a user agent must act as if
-        a <a href="#dfn-networkError">network error</a> has occurred.
-      </p>
-    </div>
-    <h2 class="no-num" id="acknowledgements">
-      Security Considerations
+    <h2 class="no-num" id="privacy">
+      Privacy and Security Considerations
     </h2>
     <p>
       <em>This section is non-normative.</em>
+    </p>
+    <p>
+      Because [[!UUID]]s used by the app: URI scheme are effectively a digital
+      finger print, an application developer could use a UUID to personally
+      identify a user. This can allow a developer to, for example, restore
+      cookies even if the user has cleared cookies from a user agent. As such,
+      user agents should provide end-users with a means of regenerating the
+      authority component of an app: URI. For example, the UUID for an
+      application could be regenerated every time the application is started.
+      Or the UUID could be regenerated when the user clears private data from
+      the user agent.
     </p>
     <p>
       When dereferencing an <code>app:</code> URI, a user agent needs to make
