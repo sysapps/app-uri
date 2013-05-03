@@ -9,6 +9,11 @@
     "stylesheet">
     <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
     "stylesheet">
+    <style class="nopub">
+    span{
+                border: 1px dotted green;
+        }
+    </style>
   </head>
   <body>
     <div class="head">
@@ -18,14 +23,15 @@
         [TITLE]
       </h1>
       <h2 class="no-num no-toc">
-        <span>[LONGSTATUS]</span> - Last updated [DATE]
+        [LONGSTATUS] - Last updated [DATE]
       </h2>
       <dl class="nopub">
         <dt>
           This Version:
         </dt>
         <dd>
-          <a href="http://www.w3.org/2012/sysapps/app-uri/">http://www.w3.org/2012/sysapps/app-uri/</a>
+          <a href=
+          "http://www.w3.org/2012/sysapps/app-uri/">http://www.w3.org/2012/sysapps/app-uri/</a>
         </dd>
         <dt>
           Git Repo:
@@ -386,7 +392,7 @@ xhr.send();
     </h3>
     <p>
       When <dfn>synthesizing</dfn> an <span><code>app:</code> URI</span>, a
-      user agent <em class="ct"><em class="rfc2119" title="must">must</em></em>
+      user agent <em class="ct"><em class="rfc2119" title="must">MUST</em></em>
       generate a string that conforms to <code>appuri</code>, and normalize it
       using <a href=
       "http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based
@@ -449,12 +455,12 @@ xhr.send();
     </h3>
     <p>
       This section describes how a user agent retrieves files from inside a
-      container by dereferencing an <code>app:</code> URI, and how a user agent
-      handles error conditions (e.g., when a file is not found). The purpose of
-      this dereferencing model is to make retrieval of files from a container
-      "look and feel" like a HTTP request (except the request and response are
-      performed over "<code>app://</code>" instead of "<code title=
-      "">http://</code>").
+      container by dereferencing an <code>app:</code> URI, and how a <span>user
+      agent</span> handles error conditions (e.g., when a file is not found).
+      The purpose of this dereferencing model is to make retrieval of files
+      from a container "look and feel" like a HTTP request (except the request
+      and response are performed over "<code>app://</code>" instead of
+      "<code title="">http://</code>").
     </p>
     <p>
       For simplicity, this specification does not define any means for cache
@@ -511,6 +517,13 @@ xhr.send();
       </li>
       <li>
         <p>
+          Ignore any <span>[HTTP]</span> <a href=
+          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">request
+          headers</a>.
+        </p>
+      </li>
+      <li>
+        <p>
           Let <var>URI</var> be the value of the <span>[HTTP]</span> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request
           URI</a>.
@@ -534,7 +547,7 @@ xhr.send();
       </li>
       <li>
         <p>
-          If the <em>URI</em> uses the scheme 'app', but the
+          If the <em>URI</em> uses the scheme '<code>app</code>', but the
           <span>authority</span> does not match the one assigned to this
           <span>application</span>, return a <span>[HTTP]</span> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403
@@ -587,6 +600,55 @@ xhr.send();
         </p>
       </li>
     </ol>
+    <div class="example">
+      <div class="exampleHeader">
+        Example
+      </div>
+      <p>
+        Requests could look like this:
+      </p>
+      <div class="block">
+        <div class="blockTitleDiv">
+          <span class="blockTitle">HEADERS</span>
+        </div>
+        <div class="blockContent">
+          <pre class="code">
+<code class="headers-code">
+        GET some/image.jpg
+        </code>
+</pre>
+        </div>
+      </div>
+      <p>
+        The user agent uses [SNIFF] to determine that the requested resource's
+        media type is <code class="headers-code">image/jpeg</code>. The user
+        agent also determines the content-length by checking the size of the
+        resource on disk. Then the following HTTP response headers are set.
+      </p>
+      <div class="block">
+        <div class="blockTitleDiv">
+          <span class="blockTitle">HEADERS</span>
+        </div>
+        <div class="blockContent">
+          <pre class="code">
+<code class="headers-code">
+  
+  200 OK
+  Content-Type: image/jpeg
+  Content-Length: 21897
+  
+  ....
+        </code>
+</pre>
+        </div>
+      </div>
+      <p>
+        If there is a <a href="#file-error-read">file error</a> or any other
+        kind of error associated with the <a href=
+        "#dfn-fileBlob"><code>blob</code></a>, then a user agent must act as if
+        a <a href="#dfn-networkError">network error</a> has occurred.
+      </p>
+    </div>
     <h2 class="no-num" id="acknowledgements">
       Security Considerations
     </h2>
