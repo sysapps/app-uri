@@ -10,15 +10,15 @@
     <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
     "stylesheet">
     <style>
-		table {
-			margin: auto;
-			text-align: center;
-			
-		}
-		td{
-			vertical-align:bottom;
-		}
-	</style>
+        table {
+                        margin: auto;
+                        text-align: center;
+                        
+                }
+                td{
+                        vertical-align:bottom;
+                }
+    </style>
     <style class="nopub">
 span{
                 border: 1px dotted green;
@@ -640,6 +640,40 @@ xhr.send();
       specification, implementors need to consider the security considerations
       discussed in the <span>[SNIFF]</span> specification.
     </p>
+    <h2 class="usecases">
+      Use Cases
+    </h2>
+    <p>
+      For developers, this specification attempts to address the following use
+      cases:
+    </p>
+    <ol>
+      <li>
+        <p>
+          Provide a URI scheme that is compatible with the features and
+          security model of [HTML], so that applications that are packaged can
+          make full use of <span>[HTML]</span>'s capabilities and those of
+          related technologies. For example, the <code>app:</code> uri scheme
+          should be usable as a <a href=
+          "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
+          document's address</a> so that it can serve as its <a href=
+          "http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a>,
+          and it should be compatible with APIs that rely on
+          <span>[HTTP]</span> responses, like <span>[XHR]</span>.
+        </p>
+      </li>
+      <li>
+        <p>
+          Provide a URI scheme that is secure, in that it is constrained to
+          just resources within a package.
+        </p>
+      </li>
+      <li>Provide an addressing scheme that is easy to work with - and that
+      developers are already accustomed to working with. The developer should
+      not be bother as to wether they are using <code>http://</code> or <code>
+        app://</code> - the Web's capabilities and APIs need to just work!
+      </li>
+    </ol>
     <h2 class="no-num">
       Acknowledgements
     </h2>
