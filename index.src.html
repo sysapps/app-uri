@@ -626,9 +626,11 @@ xhr.send();
     </p>
     <p>
       When dereferencing an <code>app:</code> URI, a user agent needs to make
-      sure that a <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic
-      link</a> (or similar) inside a package does not break out of the package
-      and end up pointing to a physical file on the end-users device.
+      sure that only files that were in the package can be accessed (i.e.,
+      those files should be sandboxed). User agents need to watch out for
+      <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a>
+      (or similar) inside a package, which can attempt to trick the user agent
+      into accessing files that are on other parts of the file system.
     </p>
     <p>
       As this specification relies on the standardized heuristics for
