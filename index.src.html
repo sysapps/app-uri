@@ -273,7 +273,6 @@ span{
       URI</span>.
     </p>
     <pre>
-<code>
 &lt;!doctype html&gt;
 &lt;script&gt;
 //Example using HTML's Location object
@@ -285,7 +284,7 @@ console.log(loc.origin === "app://c13c6f30-ce25-11e0-9572-0800200c9a66"); //true
 console.log(loc.pathname === "/index.html"); //true 
 console.log(loc.hash === "#example"); //true 
 console.log(loc.port === ""); //true
-&lt;/script&gt;</code>
+&lt;/script&gt;
 </pre>
     <p>
       This example shows an <span><code>app:</code> URI</span> being <a href=
@@ -293,7 +292,7 @@ console.log(loc.port === ""); //true
       in <span>[HTML]</span>.
     </p>
     <pre>
-<code>var img = document.createElement("img");
+var img = document.createElement("img");
 
 //the following setter triggers HTML's resolve algorithm 
 img.src = "example.gif"; 
@@ -303,29 +302,19 @@ console.log(img.src === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/example.gif"
 
 //Append the image to the document
 document.body.appendChild(img); 
-&lt;/script&gt;</code>
+&lt;/script&gt;
 </pre>
     <p>
       This example shows a resource within a packaged application being
       retrieved over <span>[XHR]</span>.
     </p>
     <pre>
-function process(data) {
+function process() {
   // process the resulting data 
 }
 
-function handler() {
-  if (this.readyState == 4 &amp;&amp; this.status == 200) {
-    var text = this.responseText;
-    var json = JSON.parse(text)
-    process(json);
-  } else if (this.readyState == 4 &amp;&amp; this.status != 200) {
-    // fetched the wrong page or there was an error...
-  }
-}
-
 var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = handler;
+xhr.onload = (hxr) =&gt; process (xhr.responseText);
 xhr.open( "GET", "playlist.json");
 xhr.send();
   
