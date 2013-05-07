@@ -23,7 +23,56 @@ figcaption:before {
             vertical-align: middle;
         }
     </style>
-    <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
+    <style class="w3c">
+.stability {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto 0 auto;
+            width: 50%;
+            background: maroon;
+            color: yellow;
+            -webkit-border-radius: 1em 1em 0 0;
+            -moz-border-radius: 1em 1em 0 0;
+            border-radius: 1em 1em 0 0;
+            -moz-box-shadow: 0 0 1em #500;
+            -webkit-box-shadow: 0 0 1em #500;
+            box-shadow: 0 0 1em red;
+            padding: 0.5em 1em;
+            text-align: center;
+        }
+        .stability strong {
+            display: block;
+        }
+        .stability button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            margin: 0;
+            border: 0;
+            padding: 0.25em 0.5em;
+            background: transparent;
+            color: black;
+            position: absolute;
+            top: -0.5em;
+            right: 0;
+            font: 1.25em sans-serif;
+            text-align: center;
+        }
+        .stability button:hover {
+            color: white;
+            text-shadow: 0 0 2px black;
+        }
+        .stability button:active {
+            padding: 0.3em 0.45em 0.2em 0.55em;
+        }
+        .stability :link, .stability :visited, .stability :link:hover, 
+        .stability :visited:hover {
+            background: transparent;
+            color: white;
+        }
+    </style>
+    <link class="w3c" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css" rel=
     "stylesheet">
     <style>
 table {
@@ -35,11 +84,6 @@ table {
                         vertical-align:bottom;
                 }
     </style>
-    <style class="nopub">
-span{
-                border: 1px dotted green;
-        }
-    </style>
   </head>
   <body>
     <div class="head">
@@ -48,30 +92,43 @@ span{
       <h1 class="no-num no-toc">
         The app: URI scheme
       </h1>
-      <h2 class="no-num no-toc" id="editor's-draft-last-updated-7-may-2013">
-        <span class="nopub">Editor's Draft- Last updated 7 May 2013</span>
+      <h2 class="no-num no-toc" id="w3c-first-public-working-draft-9-may-2013">
+        <span class="w3c">W3C First Public Working Draft 9 May 2013</span>
       </h2>
-      <dl class="nopub">
+      <dl class="w3c">
         <dt>
           This Version:
+        </dt>
+        <dd>
+          <a href=
+          "http://www.w3.org/TR/2013/WD-app-uri-20130509/">http://www.w3.org/TR/2013/WD-app-uri-20130509/</a>
+        </dd>
+        <dt>
+          Latest published version:
+        </dt>
+        <dd>
+          <a href=
+          "http://www.w3.org/TR/app-uri/">http://www.w3.org/TR/app-uri/</a>
+        </dd>
+        <dt>
+          Latest editor's draft:
         </dt>
         <dd>
           <a href=
           "http://www.w3.org/2012/sysapps/app-uri/">http://www.w3.org/2012/sysapps/app-uri/</a>
         </dd>
         <dt>
-          Git Repo:
+          Previous version:
         </dt>
         <dd>
-          <a href=
-          "https://github.com/sysapps/app-uri">https://github.com/sysapps/app-uri</a>
+          None
         </dd>
         <dt>
-          Version history:
+          Editor:
         </dt>
         <dd>
-          <a href="https://github.com/sysapps/app-uri/commits/gh-pages">Github
-          commits</a>
+          <a href="http://marcosc.com/">Marcos Cáceres</a>, Mozilla
+          Corporation.
         </dd>
         <dt>
           Bug tracker:
@@ -126,6 +183,12 @@ span{
       can be found in the <a href="http://www.w3.org/TR/">W3C technical reports
       index</a> at http://www.w3.org/TR/.</em>
     </p>
+    <p class="w3c">
+      Publication as a First Public Working Draft does not imply endorsement by
+      the W3C Membership. This is a draft document and may be updated, replaced
+      or obsoleted by other documents at any time. It is inappropriate to cite
+      this document as other than work in progress.
+    </p>
     <p>
       Implementors should be aware that this specification is not stable.
       <strong>Implementors who are not taking part in the discussions are
@@ -136,7 +199,12 @@ span{
       discussions.
     </p>
     <!-- q.v. http://lists.w3.org/Archives/Public/public-html/2010Oct/0457.html -->
-    <script>
+    <p class="stability w3c" id="wip">
+      <strong>This is a work in progress!</strong> For the latest updates from
+      the HTML WG, possibly including important bug fixes, please look at the
+      <a href="http://www.w3.org/2012/sysapps/app-uri/">editor's draft</a>
+      instead. <button onclick="closeWarning(this.parentNode)">X</button>
+    </p><script>
 function closeWarning(element) {
     element.parentNode.removeChild(element);
     var date = new Date();
@@ -814,9 +882,8 @@ xhr.send();
       <dt>
         <dfn id="html">[HTML]</dfn>
       </dt>
-      <dd class="nopub">
-        <cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML
-        Standard</a></cite>. WHATWG.
+      <dd class="w3c">
+        <cite><a href="http://www.w3.org/TR/html5/">HTML5</a></cite>. W3C.
       </dd>
       <dt>
         <dfn id="http">[HTTP]</dfn>
