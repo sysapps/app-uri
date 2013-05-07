@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-<<<<<<< HEAD
     <meta content=
     "HTML Tidy for HTML5 (experimental) for Mac OS X https://github.com/w3c/tidy-html5/tree/c63cc39"
     name="generator">
-=======
->>>>>>> upstream/gh-pages
     <meta charset="UTF-8">
     <title>
       The app: URI scheme
     </title>
-<<<<<<< HEAD
     <style>
 figcaption:before {
             content:"Figure: ";
@@ -29,11 +25,8 @@ figcaption:before {
     </style>
     <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
     "stylesheet">
-=======
-    <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
-    "stylesheet">
     <style>
-    table {
+table {
                         margin: auto;
                         text-align: center;
                         
@@ -47,7 +40,6 @@ span{
                 border: 1px dotted green;
         }
     </style>
->>>>>>> upstream/gh-pages
   </head>
   <body>
     <div class="head">
@@ -56,13 +48,8 @@ span{
       <h1 class="no-num no-toc">
         The app: URI scheme
       </h1>
-<<<<<<< HEAD
       <h2 class="no-num no-toc" id="editor's-draft-last-updated-7-may-2013">
         <span class="nopub">Editor's Draft- Last updated 7 May 2013</span>
-=======
-      <h2 class="no-num no-toc" id="editor's-draft-last-updated-3-may-2013">
-        Editor's Draft - Last updated 3 May 2013
->>>>>>> upstream/gh-pages
       </h2>
       <dl class="nopub">
         <dt>
@@ -87,15 +74,6 @@ span{
           commits</a>
         </dd>
         <dt>
-<<<<<<< HEAD
-=======
-          Editor:
-        </dt>
-        <dd>
-          <a href="http://marcosc.com/">Marcos Cáceres</a>, W3C Invited Expert
-        </dd>
-        <dt>
->>>>>>> upstream/gh-pages
           Bug tracker:
         </dt>
         <dd>
@@ -104,10 +82,6 @@ span{
         </dd>
       </dl>
       <div>
-<<<<<<< HEAD
-=======
-        <!--begin-copyright-->
->>>>>>> upstream/gh-pages
         <p class="copyright">
           <a href=
           "http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
@@ -117,12 +91,8 @@ span{
           "Massachusetts Institute of Technology">MIT</abbr></a>, <a href=
           "http://www.ercim.eu/"><abbr title=
           "European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-<<<<<<< HEAD
           <a href="http://www.keio.ac.jp/">Keio</a>, <a href=
           "http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C
-=======
-          <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C
->>>>>>> upstream/gh-pages
           <a href=
           "http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
           <a href=
@@ -130,12 +100,8 @@ span{
           and <a href=
           "http://www.w3.org/Consortium/Legal/copyright-documents">document
           use</a> rules apply.
-<<<<<<< HEAD
         </p>
         <hr>
-=======
-        </p><!--end-copyright-->
->>>>>>> upstream/gh-pages
       </div>
     </div>
     <h2 class="no-num no-toc" id="abstract">
@@ -161,7 +127,6 @@ span{
       index</a> at http://www.w3.org/TR/.</em>
     </p>
     <p>
-<<<<<<< HEAD
       Implementors should be aware that this specification is not stable.
       <strong>Implementors who are not taking part in the discussions are
       likely to find the specification changing out from under them in
@@ -186,11 +151,6 @@ function closeWarning(element) {
       scheme</cite> specification. This document was produced by the <a href=
       "http://www.w3.org/2012/sysapps/">System Applications Working Group</a>.
       If you wish to make comments regarding this document, please send them to
-=======
-      This document was produced by the <a href=
-      "www.w3.org/2012/sysapps/">System Applications Working Group</a>. If you
-      wish to make comments regarding this document, please send them to
->>>>>>> upstream/gh-pages
       <a href="mailto:public-sysapps@w3.org">public-sysapps@w3.org</a>
       (<a href="mailto:public-sysapps-request@w3.org?subject=subscribe">subscribe</a>,
       <a href=
@@ -201,11 +161,7 @@ function closeWarning(element) {
       This document was produced by a group operating under the <a href=
       "http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004
       W3C Patent Policy</a>. W3C maintains a <a href=
-<<<<<<< HEAD
       "http://www.w3.org/2004/01/pp-impl/58119/status" rel="disclosure">public
-=======
-      "http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public
->>>>>>> upstream/gh-pages
       list of any patent disclosures</a> made in connection with the
       deliverables of the group; that page also includes instructions for
       disclosing a patent. An individual who has actual knowledge of a patent
@@ -239,13 +195,8 @@ function closeWarning(element) {
         <a href="#app-uri"><span class="secno">6</span> App URI</a>
         <ol class="toc">
           <li>
-<<<<<<< HEAD
-            <a href="#synthesizing-an-app:-uri"><span class="secno">6.1</span>
-            Synthesizing an <code>app:</code> URI</a>
-=======
             <a href="#synthesizing"><span class="secno">6.1</span> Synthesizing
             an <code>app:</code> URI</a>
->>>>>>> upstream/gh-pages
           </li>
           <li>
             <a href="#the-authority-component"><span class="secno">6.2</span>
@@ -264,12 +215,6 @@ function closeWarning(element) {
         </ol>
       </li>
       <li>
-<<<<<<< HEAD
-        <a class="no-num" href="#acknowledgements">Security Considerations</a>
-      </li>
-      <li>
-        <a class="no-num" href="#acknowledgements-0">Acknowledgements</a>
-=======
         <a class="no-num" href="#privacy">Privacy and Security
         Considerations</a>
       </li>
@@ -279,7 +224,6 @@ function closeWarning(element) {
       </li>
       <li>
         <a class="no-num" href="#acknowledgements">Acknowledgements</a>
->>>>>>> upstream/gh-pages
       </li>
       <li>
         <a class="no-num" href="#normative-references">Normative references</a>
@@ -359,11 +303,7 @@ function closeWarning(element) {
           "#file-url-scheme">file URL scheme</a>, as it does not allow
           addressing outside a sand-boxed environment. Additionally, it does
           not expose the location of a file on user's local device, nor their
-<<<<<<< HEAD
-          user name, as in the case with some Unix-based implementations.
-=======
           username, as in the case with some Unix-based implementations.
->>>>>>> upstream/gh-pages
         </p>
       </li>
       <li>
@@ -429,10 +369,6 @@ function closeWarning(element) {
       "#app:-uri"><code>app:</code> URI</a>.
     </p>
     <pre>
-<<<<<<< HEAD
-<code>
-=======
->>>>>>> upstream/gh-pages
 &lt;!doctype html&gt;
 &lt;script&gt;
 //Example using HTML's Location object
@@ -453,11 +389,7 @@ console.log(loc.port === ""); //true
       in <a href="#html">[HTML]</a>.
     </p>
     <pre>
-<<<<<<< HEAD
-<code>var img = document.createElement("img");
-=======
 var img = document.createElement("img");
->>>>>>> upstream/gh-pages
 
 //the following setter triggers HTML's resolve algorithm 
 img.src = "example.gif"; 
@@ -474,11 +406,7 @@ document.body.appendChild(img);
       retrieved over <a href="#xhr">[XHR]</a>.
     </p>
     <pre>
-<<<<<<< HEAD
-function process(data) {
-=======
 function process() {
->>>>>>> upstream/gh-pages
   // process the resulting data 
 }
 
@@ -510,11 +438,7 @@ xhr.send();
     </h2>
     <p>
       A <dfn id="user-agent-0">user agent</dfn> is an implementation of this
-<<<<<<< HEAD
-      specification that is able to <a href="#synthesizing" title=
-=======
       specification that is able to <a href="#synthesizing-0" title=
->>>>>>> upstream/gh-pages
       "synthesizing">synthesize <code>app:</code> URIs</a> as well as <a href=
       "#rules-for-dereferencing-an-app:-uri" title=
       "rules for dereferencing an app: URI">dereference</a> them.
@@ -538,13 +462,8 @@ xhr.send();
 "#dfn-authority">authority</a> <a href="#path">path</a> [ "?" <a href=
 "#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
 <dfn id="scheme">scheme</dfn> = "app"
-<<<<<<< HEAD
-<a href="#dfn-authority">authority</a> = <span>1*unreserved</span> / <a href=
-"#uuid">uuid</a> 
-=======
 <a href="#dfn-authority">authority</a> = 1*<a href=
 "#unreserved">unreserved</a> / <a href="#uuid">uuid</a> 
->>>>>>> upstream/gh-pages
   
 </pre>Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">
     path</dfn></a></code>, <code><dfn id="query"><a href=
@@ -556,16 +475,6 @@ xhr.send();
     are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id=
     "uuid"><a href=
     "http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is
-<<<<<<< HEAD
-    defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
-    <h3 id="synthesizing-an-app:-uri">
-      <span class="secno">6.1</span> Synthesizing an <code>app:</code> URI
-    </h3>
-    <p>
-      When <dfn id="synthesizing">synthesizing</dfn> an <a href=
-      "#app:-uri"><code>app:</code> URI</a>, a user agent <em class=
-      "ct"><em class="rfc2119" title="must">must</em></em> generate a string
-=======
     defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>. See <a href=
     "#synthesizing-0" title="synthesizing">Synthesizing an <code>app:</code>
     URI</a> for more information on the use of UUID in construction of the
@@ -577,7 +486,6 @@ xhr.send();
       When <dfn id="synthesizing-0">synthesizing</dfn> an <a href=
       "#app:-uri"><code>app:</code> URI</a>, a user agent <em class=
       "ct"><em class="rfc2119" title="must">MUST</em></em> generate a string
->>>>>>> upstream/gh-pages
       that conforms to <code><a href="#appuri">appuri</a></code>, and normalize
       it using <a href=
       "http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based
@@ -617,13 +525,6 @@ xhr.send();
       <span class="secno">6.3</span> Query and Fragment components
     </h3>
     <p>
-<<<<<<< HEAD
-      The <code><a href="#query">query</a></code> and fragment
-      <code>components</code>, when present, complement the <code><a href=
-      "#path">path</a></code> component in identifying a resource within a
-      package. However, when <a href="#rules-for-dereferencing-an-app:-uri"
-      title="rules for dereferencing an app: URI">dereferencing</a>, the
-=======
       The <a href="http://url.spec.whatwg.org/#concept-url-query">query</a> and
       <a href="http://url.spec.whatwg.org/#concept-url-fragment">fragment</a>
       components, when present, complement the <a href=
@@ -631,7 +532,6 @@ xhr.send();
       identifying a resource within a package <span>[URL]</span>. However, when
       <a href="#rules-for-dereferencing-an-app:-uri" title=
       "rules for dereferencing an app: URI">dereferencing</a>, the
->>>>>>> upstream/gh-pages
       <code><a href="#query">query</a></code> and <code><a href=
       "#fragment">fragment</a></code> components don't play any part in
       locating a file inside of package.
@@ -657,21 +557,12 @@ xhr.send();
     </h3>
     <p>
       This section describes how a user agent retrieves files from inside a
-<<<<<<< HEAD
-      container by dereferencing an <code>app:</code> URI, and how a user agent
-      handles error conditions (e.g., when a file is not found). The purpose of
-      this dereferencing model is to make retrieval of files from a container
-      "look and feel" like a HTTP request (except the request and response are
-      performed over "<code>app://</code>" instead of "<code title=
-      "">http://</code>").
-=======
       container by dereferencing an <code>app:</code> URI, and how a <a href=
       "#user-agent-0">user agent</a> handles error conditions (e.g., when a
       file is not found). The purpose of this dereferencing model is to make
       retrieval of files from a container "look and feel" like a HTTP request
       (except the request and response are performed over "<code>app://</code>"
       instead of "<code title="">http://</code>").
->>>>>>> upstream/gh-pages
     </p>
     <p>
       For simplicity, this specification does not define any means for cache
@@ -725,8 +616,6 @@ xhr.send();
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2">501
           Not Implemented</a> <a href="#response">response</a> and terminate
           this algorithm.
-<<<<<<< HEAD
-=======
         </p>
       </li>
       <li>
@@ -734,7 +623,6 @@ xhr.send();
           Ignore any <a href="#http">[HTTP]</a> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">request
           headers</a>.
->>>>>>> upstream/gh-pages
         </p>
       </li>
       <li>
@@ -750,12 +638,8 @@ xhr.send();
           <a href=
           "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a>
           <em>URI</em> into an <a href=
-<<<<<<< HEAD
-          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>.
-=======
           "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>
           using the document's origin as the base.
->>>>>>> upstream/gh-pages
         </p>
       </li>
       <li>
@@ -770,15 +654,9 @@ xhr.send();
       </li>
       <li>
         <p>
-<<<<<<< HEAD
-          If the <em>URI</em> uses the scheme 'app', but the <a href=
-          "#dfn-authority">authority</a> does not match the one assigned to
-          this <span>application</span>, return a <a href="#http">[HTTP]</a>
-=======
           If the <em>URI</em> uses the scheme '<code>app</code>', but the
           <a href="#dfn-authority">authority</a> does not match the one
           assigned to this document, return a <a href="#http">[HTTP]</a>
->>>>>>> upstream/gh-pages
           <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403
           Forbidden</a> <a href="#response">response</a> and terminate this
@@ -787,13 +665,8 @@ xhr.send();
       </li>
       <li>
         <p>
-<<<<<<< HEAD
-          Let <var><a href="#path">path</a></var> be the path to the file being
-          sought by the user agent.
-=======
           Let <var><a href="#path">path</a></var> be the <code><a href=
           "#path">path</a></code> component of URI.
->>>>>>> upstream/gh-pages
         </p>
       </li>
       <li>
@@ -812,15 +685,9 @@ xhr.send();
       </li>
       <li>
         <p>
-<<<<<<< HEAD
-          If retrieving <var>potential-file</var> results in a error (e.g., the
-          file is corrupt, locked, etc.), return a <a href="#http">[HTTP]</a>
-          <a href=
-=======
           Otherwise, if retrieving <var>potential-file</var> results in an
           error (e.g., the file is corrupt, locked, etc.), return a <a href=
           "#http">[HTTP]</a> <a href=
->>>>>>> upstream/gh-pages
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500
           Internal Server Error</a> <a href="#response">response</a>.
         </p>
@@ -838,12 +705,8 @@ xhr.send();
           OK</a> <a href="#response">response</a>, with the value of
           <var>content-type</var> as the <a href="#http">[HTTP]</a> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
-<<<<<<< HEAD
-          header, and with <var>potential-file</var> as the response body.
-=======
           header, and with the contents of <var>potential-file</var> as the
           response body.
->>>>>>> upstream/gh-pages
         </p>
       </li>
     </ol>
@@ -923,15 +786,11 @@ xhr.send();
       scheme</a></cite> specification. The Systems Application working group
       acknowledge the hard work of the <a href=
       "http://www.w3.org/2008/webapps/">Web Applications Working Group</a> in
-<<<<<<< HEAD
-      laying down the fundations for this specification.
-=======
       laying down the foundations for this specification.
     </p>
     <p>
       Thanks also to Robin Berjon, who helped edit this specification when it
       was part of WebApps.
->>>>>>> upstream/gh-pages
     </p>
     <p>
       Graphic icons used some examples of this specification were created by
