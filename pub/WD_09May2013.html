@@ -74,6 +74,16 @@ figcaption:before {
     </style>
     <link class="w3c" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css" rel=
     "stylesheet">
+    <style>
+table {
+                        margin: auto;
+                        text-align: center;
+                        
+                }
+                td{
+                        vertical-align:bottom;
+                }
+    </style>
   </head>
   <body>
     <div class="head">
@@ -253,8 +263,8 @@ function closeWarning(element) {
         <a href="#app-uri"><span class="secno">6</span> App URI</a>
         <ol class="toc">
           <li>
-            <a href="#synthesizing-an-app:-uri"><span class="secno">6.1</span>
-            Synthesizing an <code>app:</code> URI</a>
+            <a href="#synthesizing"><span class="secno">6.1</span> Synthesizing
+            an <code>app:</code> URI</a>
           </li>
           <li>
             <a href="#the-authority-component"><span class="secno">6.2</span>
@@ -273,10 +283,15 @@ function closeWarning(element) {
         </ol>
       </li>
       <li>
-        <a class="no-num" href="#acknowledgements">Security Considerations</a>
+        <a class="no-num" href="#privacy">Privacy and Security
+        Considerations</a>
       </li>
       <li>
-        <a class="no-num" href="#acknowledgements-0">Acknowledgements</a>
+        <a class="usecases" href="#use-cases"><span class="secno">7</span> Use
+        Cases</a>
+      </li>
+      <li>
+        <a class="no-num" href="#acknowledgements">Acknowledgements</a>
       </li>
       <li>
         <a class="no-num" href="#normative-references">Normative references</a>
@@ -312,7 +327,7 @@ function closeWarning(element) {
       <li>
         <p>
           <strong>Security/privacy issues:</strong> on Unix systems, naive
-          implementations expose the user name as part of the path, as well as
+          implementations expose the username as part of the path, as well as
           the full path on the file system to where a file is residing (e.g.,
           "/Users/<strong>username</strong>/app/index.html"). In addition, the
           <a href="#file-url-scheme">file URL scheme</a> potentially opens up
@@ -356,7 +371,7 @@ function closeWarning(element) {
           "#file-url-scheme">file URL scheme</a>, as it does not allow
           addressing outside a sand-boxed environment. Additionally, it does
           not expose the location of a file on user's local device, nor their
-          user name, as in the case with some Unix-based implementations.
+          username, as in the case with some Unix-based implementations.
         </p>
       </li>
       <li>
@@ -422,7 +437,6 @@ function closeWarning(element) {
       "#app:-uri"><code>app:</code> URI</a>.
     </p>
     <pre>
-<code>
 &lt;!doctype html&gt;
 &lt;script&gt;
 //Example using HTML's Location object
@@ -434,7 +448,7 @@ console.log(loc.origin === "app://c13c6f30-ce25-11e0-9572-0800200c9a66"); //true
 console.log(loc.pathname === "/index.html"); //true 
 console.log(loc.hash === "#example"); //true 
 console.log(loc.port === ""); //true
-&lt;/script&gt;</code>
+&lt;/script&gt;
 </pre>
     <p>
       This example shows an <a href="#app:-uri"><code>app:</code> URI</a> being
@@ -443,7 +457,7 @@ console.log(loc.port === ""); //true
       in <a href="#html">[HTML]</a>.
     </p>
     <pre>
-<code>var img = document.createElement("img");
+var img = document.createElement("img");
 
 //the following setter triggers HTML's resolve algorithm 
 img.src = "example.gif"; 
@@ -453,32 +467,21 @@ console.log(img.src === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/example.gif"
 
 //Append the image to the document
 document.body.appendChild(img); 
-&lt;/script&gt;</code>
+&lt;/script&gt;
 </pre>
     <p>
       This example shows a resource within a packaged application being
       retrieved over <a href="#xhr">[XHR]</a>.
     </p>
     <pre>
-function process(data) {
+function process() {
   // process the resulting data 
 }
 
-function handler() {
-  if (this.readyState == 4 &amp;&amp; this.status == 200) {
-    var text = this.responseText;
-    var json = JSON.parse(text)
-    process(json);
-  } else if (this.readyState == 4 &amp;&amp; this.status != 200) {
-    // fetched the wrong page or there was an error...
-  }
-}
-
 var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = handler;
+xhr.onload = (hxr) =&gt; process (xhr.responseText);
 xhr.open( "GET", "playlist.json");
 xhr.send();
-  
 </pre><!-- OddPage -->
     <h2 id="conformance">
       <span class="secno">3</span> Conformance
@@ -503,7 +506,7 @@ xhr.send();
     </h2>
     <p>
       A <dfn id="user-agent-0">user agent</dfn> is an implementation of this
-      specification that is able to <a href="#synthesizing" title=
+      specification that is able to <a href="#synthesizing-0" title=
       "synthesizing">synthesize <code>app:</code> URIs</a> as well as <a href=
       "#rules-for-dereferencing-an-app:-uri" title=
       "rules for dereferencing an app: URI">dereference</a> them.
@@ -527,8 +530,8 @@ xhr.send();
 "#dfn-authority">authority</a> <a href="#path">path</a> [ "?" <a href=
 "#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
 <dfn id="scheme">scheme</dfn> = "app"
-<a href="#dfn-authority">authority</a> = <span>1*unreserved</span> / <a href=
-"#uuid">uuid</a> 
+<a href="#dfn-authority">authority</a> = 1*<a href=
+"#unreserved">unreserved</a> / <a href="#uuid">uuid</a> 
   
 </pre>Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">
     path</dfn></a></code>, <code><dfn id="query"><a href=
@@ -540,14 +543,17 @@ xhr.send();
     are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id=
     "uuid"><a href=
     "http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is
-    defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>.
-    <h3 id="synthesizing-an-app:-uri">
+    defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>. See <a href=
+    "#synthesizing-0" title="synthesizing">Synthesizing an <code>app:</code>
+    URI</a> for more information on the use of UUID in construction of the
+    authority field.
+    <h3 id="synthesizing">
       <span class="secno">6.1</span> Synthesizing an <code>app:</code> URI
     </h3>
     <p>
-      When <dfn id="synthesizing">synthesizing</dfn> an <a href=
+      When <dfn id="synthesizing-0">synthesizing</dfn> an <a href=
       "#app:-uri"><code>app:</code> URI</a>, a user agent <em class=
-      "ct"><em class="rfc2119" title="must">must</em></em> generate a string
+      "ct"><em class="rfc2119" title="must">MUST</em></em> generate a string
       that conforms to <code><a href="#appuri">appuri</a></code>, and normalize
       it using <a href=
       "http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based
@@ -560,10 +566,14 @@ xhr.send();
       The <dfn id="dfn-authority">authority</dfn> is a unique identifier that
       represents the instance of a software application that is making use of
       then <code>app:</code> URI (e.g., in the case of a packaged application,
-      it represents an instance of an application). The identifier represented
-      by the authority is bound to an instance of an application for the life
-      of that application instance: that is, until that instance is destroyed
-      (e.g., the application is uninstalled from an end-user's device).
+      it represents an instance of an application).
+    </p>
+    <p>
+      How long the identifier represented by the authority is bound to an
+      instance of an application is application specific (e.g., it may be reset
+      when the user clears the user agent's private data, or can last until the
+      application is uninstalled from an end-user's device). See <span title=
+      "privacy">privacy and security considerations</span>.
     </p>
     <p>
       The reason for having a unique authority is, amongst other things, to
@@ -583,17 +593,19 @@ xhr.send();
       <span class="secno">6.3</span> Query and Fragment components
     </h3>
     <p>
-      The <code><a href="#query">query</a></code> and fragment
-      <code>components</code>, when present, complement the <code><a href=
-      "#path">path</a></code> component in identifying a resource within a
-      package. However, when <a href="#rules-for-dereferencing-an-app:-uri"
-      title="rules for dereferencing an app: URI">dereferencing</a>, the
+      The <a href="http://url.spec.whatwg.org/#concept-url-query">query</a> and
+      <a href="http://url.spec.whatwg.org/#concept-url-fragment">fragment</a>
+      components, when present, complement the <a href=
+      "http://url.spec.whatwg.org/#concept-url-path">path</a> component in
+      identifying a resource within a package <span>[URL]</span>. However, when
+      <a href="#rules-for-dereferencing-an-app:-uri" title=
+      "rules for dereferencing an app: URI">dereferencing</a>, the
       <code><a href="#query">query</a></code> and <code><a href=
       "#fragment">fragment</a></code> components don't play any part in
       locating a file inside of package.
     </p>
     <p>
-      For example, the followingn <code>app:</code> URIs all return the same
+      For example, the following <code>app:</code> URIs all return the same
       file (example.gif):
     </p>
     <ul>
@@ -613,12 +625,12 @@ xhr.send();
     </h3>
     <p>
       This section describes how a user agent retrieves files from inside a
-      container by dereferencing an <code>app:</code> URI, and how a user agent
-      handles error conditions (e.g., when a file is not found). The purpose of
-      this dereferencing model is to make retrieval of files from a container
-      "look and feel" like a HTTP request (except the request and response are
-      performed over "<code>app://</code>" instead of "<code title=
-      "">http://</code>").
+      container by dereferencing an <code>app:</code> URI, and how a <a href=
+      "#user-agent-0">user agent</a> handles error conditions (e.g., when a
+      file is not found). The purpose of this dereferencing model is to make
+      retrieval of files from a container "look and feel" like a HTTP request
+      (except the request and response are performed over "<code>app://</code>"
+      instead of "<code title="">http://</code>").
     </p>
     <p>
       For simplicity, this specification does not define any means for cache
@@ -676,6 +688,13 @@ xhr.send();
       </li>
       <li>
         <p>
+          Ignore any <a href="#http">[HTTP]</a> <a href=
+          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">request
+          headers</a>.
+        </p>
+      </li>
+      <li>
+        <p>
           Let <var>URI</var> be the value of the <a href="#http">[HTTP]</a>
           <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request
@@ -687,7 +706,8 @@ xhr.send();
           <a href=
           "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a>
           <em>URI</em> into an <a href=
-          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>.
+          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>
+          using the document's origin as the base.
         </p>
       </li>
       <li>
@@ -702,9 +722,9 @@ xhr.send();
       </li>
       <li>
         <p>
-          If the <em>URI</em> uses the scheme 'app', but the <a href=
-          "#dfn-authority">authority</a> does not match the one assigned to
-          this <span>application</span>, return a <a href="#http">[HTTP]</a>
+          If the <em>URI</em> uses the scheme '<code>app</code>', but the
+          <a href="#dfn-authority">authority</a> does not match the one
+          assigned to this document, return a <a href="#http">[HTTP]</a>
           <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403
           Forbidden</a> <a href="#response">response</a> and terminate this
@@ -713,8 +733,8 @@ xhr.send();
       </li>
       <li>
         <p>
-          Let <var><a href="#path">path</a></var> be the path to the file being
-          sought by the user agent.
+          Let <var><a href="#path">path</a></var> be the <code><a href=
+          "#path">path</a></code> component of URI.
         </p>
       </li>
       <li>
@@ -733,9 +753,9 @@ xhr.send();
       </li>
       <li>
         <p>
-          If retrieving <var>potential-file</var> results in a error (e.g., the
-          file is corrupt, locked, etc.), return a <a href="#http">[HTTP]</a>
-          <a href=
+          Otherwise, if retrieving <var>potential-file</var> results in an
+          error (e.g., the file is corrupt, locked, etc.), return a <a href=
+          "#http">[HTTP]</a> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500
           Internal Server Error</a> <a href="#response">response</a>.
         </p>
@@ -753,23 +773,79 @@ xhr.send();
           OK</a> <a href="#response">response</a>, with the value of
           <var>content-type</var> as the <a href="#http">[HTTP]</a> <a href=
           "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
-          header, and with <var>potential-file</var> as the response body.
+          header, and with the contents of <var>potential-file</var> as the
+          response body.
         </p>
       </li>
     </ol>
-    <h2 class="no-num" id="acknowledgements">
-      Security Considerations
+    <h2 class="no-num" id="privacy">
+      Privacy and Security Considerations
     </h2>
     <p>
       <em>This section is non-normative.</em>
     </p>
     <p>
-      When dereferencing an <code>app:</code> URI, a user agent needs to make
-      sure that a <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic
-      link</a> (or similar) inside a package does not break out of the package
-      and end up pointing to a physical file on the end-users device.
+      Because <a href="#uuid">[UUID]</a>s used by the app: URI scheme are
+      effectively a digital finger print, an application developer could use a
+      UUID to personally identify a user. This can allow a developer to, for
+      example, restore cookies even if the user has cleared cookies from a user
+      agent. As such, user agents should provide end-users with a means of
+      regenerating the authority component of an app: URI. For example, the
+      UUID for an application could be regenerated every time the application
+      is started. Or the UUID could be regenerated when the user clears private
+      data from the user agent.
     </p>
-    <h2 class="no-num" id="acknowledgements-0">
+    <p>
+      When dereferencing an <code>app:</code> URI, a user agent needs to make
+      sure that only files that were in the package can be accessed (i.e.,
+      those files should be sand-boxed). User agents need to watch out for
+      <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a>
+      (or similar) inside a package, which can attempt to trick the user agent
+      into accessing files that are on other parts of the file system.
+    </p>
+    <p>
+      As this specification relies on the standardized heuristics for
+      determining the content type of files defined in the <a href=
+      "#sniff">[SNIFF]</a> specification, implementors need to consider the
+      security considerations discussed in the <a href="#sniff">[SNIFF]</a>
+      specification.
+    </p>
+    <h2 class="usecases" id="use-cases">
+      <span class="secno">7</span> Use Cases
+    </h2>
+    <p>
+      For developers, this specification attempts to address the following use
+      cases:
+    </p>
+    <ol>
+      <li>
+        <p>
+          Provide a URI scheme that is compatible with the features and
+          security model of [HTML], so that applications that are packaged can
+          make full use of <a href="#html">[HTML]</a>'s capabilities and those
+          of related technologies. For example, the <code>app:</code> uri
+          scheme should be usable as a <a href=
+          "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
+          document's address</a> so that it can serve as its <a href=
+          "http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a>,
+          and it should be compatible with APIs that rely on <a href=
+          "#http">[HTTP]</a> responses, like <a href="#xhr">[XHR]</a>.
+        </p>
+      </li>
+      <li>
+        <p>
+          Provide a URI scheme that is secure, in that it is constrained to
+          just resources within a package.
+        </p>
+      </li>
+      <li>Provide an addressing scheme that is easy to work with - and that
+      developers are already accustomed to working with. The developer should
+      not be bother as to wether they are using <code><a href=
+      "#http">http://</a></code> or <code>app://</code> - the Web's
+      capabilities and APIs need to just work!
+      </li>
+    </ol>
+    <h2 class="no-num" id="acknowledgements">
       Acknowledgements
     </h2>
     <p>
@@ -778,7 +854,11 @@ xhr.send();
       scheme</a></cite> specification. The Systems Application working group
       acknowledge the hard work of the <a href=
       "http://www.w3.org/2008/webapps/">Web Applications Working Group</a> in
-      laying down the fundations for this specification.
+      laying down the foundations for this specification.
+    </p>
+    <p>
+      Thanks also to Robin Berjon, who helped edit this specification when it
+      was part of WebApps.
     </p>
     <p>
       Graphic icons used some examples of this specification were created by
@@ -802,9 +882,8 @@ xhr.send();
       <dt>
         <dfn id="html">[HTML]</dfn>
       </dt>
-      <dd>
-        <cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML
-        Standard</a></cite>. WHATWG.
+      <dd class="w3c">
+        <cite><a href="http://www.w3.org/TR/html5/">HTML5</a></cite>. W3C.
       </dd>
       <dt>
         <dfn id="http">[HTTP]</dfn>
@@ -839,7 +918,7 @@ xhr.send();
       </dt>
       <dd>
         <a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique
-        IDentifier (UUID) URN Namespace</cite></a>. IETF.
+        Identifier (UUID) URN Namespace</cite></a>. IETF.
       </dd>
       <dt>
         [URL]
@@ -864,7 +943,7 @@ xhr.send();
       </dt>
       <dd>
         <a href="http://www.ietf.org/rfc/rfc1738.txt"><cite>Uniform Resource
-        Locators (URL)</cite></a> (Obselete). IETF.
+        Locators (URL)</cite></a> (Obsolete). IETF.
       </dd>
       <dt>
         <dfn id="svg">[SVG]</dfn>
