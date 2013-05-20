@@ -76,7 +76,7 @@ figcaption:before {
     <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
     "stylesheet">
     <style>
-    table {
+table {
                         margin: auto;
                         text-align: center;
                         
@@ -623,9 +623,12 @@ xhr.send();
       "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.15">Content-MD5</a>).
       In the case of an error in the request (i.e., <a href=
       "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">status
-      codes</a> 500, 501, 400, 404), the user agent <em class="ct">MAY</em>
-      include a message describing the error in the <span>[HTTP]</span>
-      response body.
+      codes</a> 500, 501, 400, 404), the user agent <em class="ct">MUST</em>
+      return an empty response body. Optionally, in case of an error in the
+      request, the user agent <em class="ct">SHOULD</em> provide the developer
+      with feedback indicating what error occurred (e.g., in an error console
+      or where network request information is available via the user agent's
+      developer tools).
     </p>
     <p>
       To dereference a <code>app:</code> <span>URI</span> to a file in a app
