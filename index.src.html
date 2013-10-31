@@ -727,8 +727,11 @@ xhr.send();
       </li>
       <li>
         <p>
-          Let <var>content-type</var> be the result of applying
-          <span>[SNIFF]</span> to determine the <var>content-type</var>.
+          Determine the <var>content-type</var> be checking if
+          <span>[HTTP]</span> <a href=
+          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
+          header is present, otherwise use <span>[SNIFF]</span> or other
+          appropriate mechanism.
         </p>
       </li>
       <li>
