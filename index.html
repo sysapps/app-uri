@@ -48,8 +48,9 @@ span{
       <h1 class="no-num no-toc">
         The app: URI scheme
       </h1>
-      <h2 class="no-num no-toc" id="editor's-draft-last-updated-22-may-2013">
-        <span class="nopub">Editor's Draft- Last updated 22 May 2013</span>
+      <h2 class="no-num no-toc" id=
+      "editor's-draft-last-updated-1-november-2013">
+        <span class="nopub">Editor's Draft- Last updated 1 November 2013</span>
       </h2>
       <dl class="nopub">
         <dt>
@@ -79,6 +80,14 @@ span{
         <dd>
           <a href="https://github.com/sysapps/app-uri/issues">Issue tracker on
           github</a>
+        </dd>
+        <dt>
+          Test suite:
+        </dt>
+        <dd>
+          <a href=
+          "https://github.com/sysapps/testsuites/tree/gh-pages/app-URI">Tests
+          on Github.</a>
         </dd>
       </dl>
       <div>
@@ -703,8 +712,11 @@ xhr.send();
       </li>
       <li>
         <p>
-          Let <var>content-type</var> be the result of applying <a href=
-          "#sniff">[SNIFF]</a> to determine the <var>content-type</var>.
+          Determine the <var>content-type</var> be checking if <a href=
+          "#http">[HTTP]</a> <a href=
+          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
+          header is present, otherwise use <a href="#sniff">[SNIFF]</a> or
+          other appropriate mechanism.
         </p>
       </li>
       <li>
