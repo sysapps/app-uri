@@ -49,8 +49,8 @@ span{
         The app: URI scheme
       </h1>
       <h2 class="no-num no-toc" id=
-      "editor's-draft-last-updated-1-november-2013">
-        <span class="nopub">Editor's Draft- Last updated 1 November 2013</span>
+      "editor's-draft-last-updated-6-november-2013">
+        <span class="nopub">Editor's Draft- Last updated 6 November 2013</span>
       </h2>
       <dl class="nopub">
         <dt>
@@ -363,7 +363,7 @@ function closeWarning(element) {
             running instance
           </td>
           <td>
-            <code>app://c13c...6f30/index.html</code>
+            <code>app://com.foo.bar/index.html</code>
           </td>
         </tr>
       </table>
@@ -383,9 +383,9 @@ function closeWarning(element) {
 //Example using HTML's Location object
 var loc =  window.location; 
 console.log(loc.protocol === "app:"); //true 
-console.log(loc.host === "c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
-console.log(loc.href === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html"); //true 
-console.log(loc.origin === "app://c13c6f30-ce25-11e0-9572-0800200c9a66"); //true 
+console.log(loc.host === "com.foo.bar"); //true 
+console.log(loc.href === "app://com.foo.bar/index.html"); //true 
+console.log(loc.origin === "app://com.foo.bar"); //true 
 console.log(loc.pathname === "/index.html"); //true 
 console.log(loc.hash === "#example"); //true 
 console.log(loc.port === ""); //true
@@ -472,7 +472,7 @@ xhr.send();
 "#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
 <dfn id="scheme">scheme</dfn> = "app"
 <a href="#dfn-authority">authority</a> = 1*<a href=
-"#unreserved">unreserved</a> / <a href="#uuid">uuid</a> 
+"#unreserved">unreserved</a> 
   
 </pre>Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">
     path</dfn></a></code>, <code><dfn id="query"><a href=
@@ -481,13 +481,7 @@ xhr.send();
     "http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>,
     and <code><dfn id="unreserved"><a href=
     "http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code>
-    are defined in <a href="#iri">[IRI]</a>. And, and <code><dfn id=
-    "uuid"><a href=
-    "http://tools.ietf.org/html/rfc4122#section-3">uuid</a></dfn></code> is
-    defined in <a href="#uuid-spec" title="uuid-spec">[UUID]</a>. See <a href=
-    "#synthesizing-0" title="synthesizing">Synthesizing an <code>app:</code>
-    URI</a> for more information on the use of UUID in construction of the
-    authority field.
+    are defined in <a href="#iri">[IRI]</a>.
     <h3 id="synthesizing">
       <span class="secno">6.1</span> Synthesizing an <code>app:</code> URI
     </h3>
@@ -510,25 +504,15 @@ xhr.send();
       it represents an instance of an application).
     </p>
     <p>
-      How long the identifier represented by the authority is bound to an
-      instance of an application is application specific (e.g., it may be reset
-      when the user clears the user agent's private data, or can last until the
-      application is uninstalled from an end-user's device). See <span title=
-      "privacy">privacy and security considerations</span>.
+      The form and length of identifier represented by the authority is
+      application specific (e.g., it may be reset when the user clears the user
+      agent's private data, or can last until the application is uninstalled
+      from an end-user's device). See <span title="privacy">privacy and
+      security considerations</span>.
     </p>
     <p>
       The reason for having a unique authority is, amongst other things, to
       prevent multiple instances from overriding each other's data.
-    </p>
-    <p>
-      It is <em class="rfc2119" title="recommended">recommended</em> that a
-      <a href="#uuid-spec" title="uuid-spec">[UUID]</a> be used as the value of
-      the <a href="#dfn-authority">authority</a> component (but it's not
-      mandatory! Other types of authorities, like <a href=
-      "http://en.wikipedia.org/wiki/Reverse_domain_name_notation">reverse
-      domain name notation</a>, are allowed). Using a <a href=
-      "#uuid">[UUID]</a> makes it improbable that two URIs will be alike, and
-      also makes them hard to guess.
     </p>
     <h3 id="query-and-fragment-components">
       <span class="secno">6.3</span> Query and Fragment components
@@ -738,15 +722,12 @@ xhr.send();
       <em>This section is non-normative.</em>
     </p>
     <p>
-      Because <a href="#uuid">[UUID]</a>s used by the app: URI scheme are
-      effectively a digital finger print, an application developer could use a
-      UUID to personally identify a user. This can allow a developer to, for
-      example, restore cookies even if the user has cleared cookies from a user
-      agent. As such, user agents should provide end-users with a means of
-      regenerating the authority component of an app: URI. For example, the
-      UUID for an application could be regenerated every time the application
-      is started. Or the UUID could be regenerated when the user clears private
-      data from the user agent.
+      Using unique identifiers (e.g., a UUID) as the host component of the
+      <code>app</code> URI scheme could be exploited as a digital finger print.
+      This can allow a developer to, for example, restore cookies even if the
+      user has cleared cookies from a user agent. As such, if the user agent
+      relies on uniqure identifiers as the host component, then it should
+      provide end-users with a means of regenerating the authority component.
     </p>
     <p>
       When dereferencing an <code>app:</code> URI, a user agent needs to make
@@ -868,13 +849,6 @@ xhr.send();
         Sniffing</cite></a>. WHATWG.
       </dd>
       <dt>
-        <dfn id="uuid-spec" title="uuid-spec">[UUID]</dfn>
-      </dt>
-      <dd>
-        <a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique
-        Identifier (UUID) URN Namespace</cite></a>. IETF.
-      </dd>
-      <dt>
         [URL]
       </dt>
       <dd>
@@ -905,6 +879,13 @@ xhr.send();
       <dd>
         <a href="http://www.w3.org/TR/SVGTiny12/">Scalable Vector Graphics
         (SVG) Tiny 1.2 Specification</a>. W3C.
+      </dd>
+      <dt>
+        <dfn id="uuid-spec" title="uuid-spec">[UUID]</dfn>
+      </dt>
+      <dd>
+        <a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique
+        Identifier (UUID) URN Namespace</cite></a>. IETF.
       </dd>
       <dt>
         <dfn id="webstorage">[WebStorage]</dfn>
