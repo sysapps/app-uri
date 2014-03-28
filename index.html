@@ -1,383 +1,308 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content=
-    "HTML Tidy for HTML5 (experimental) for Mac OS X https://github.com/w3c/tidy-html5/tree/c63cc39"
-    name="generator">
     <meta charset="UTF-8">
     <title>
-      The app: URI scheme
+      The app: URL Scheme
     </title>
+    <script src="http://www.w3.org/Tools/respec/respec-w3c-common" class=
+    "remove">
+</script>
+    <script class='remove'>
+/**/
+    var respecConfig = {
+        specStatus: 'LC',
+        shortName: 'app-uri',
+        edDraftURI: 'http://app-uri.sysapps.org/',
+        publishDate: '2014-04-11',
+        lcEnd: '2014-05-11',
+        previousMaturity: 'FPWD',
+        previousPublishDate: '2013-05-16',
+        editors: [{
+        name: 'Marcos Caceres',
+        company: 'Mozilla Corporation',
+        companyURL: 'http://mozilla.com'
+        }],
+        wg: "System Applications Working Group",
+        wgURI: "http://www.w3.org/2012/sysapps/",
+        wgPublicList: "public-sysapps",
+        wgPatentURI: "http://www.w3.org/2004/01/pp-impl/58119/status",
+        otherLinks: [{
+        key: "Repository",
+        data: [{
+            value: "We are on Github.",
+            href: "https://github.com/sysapps/app-uri"
+          }, {
+            value: "File a bug.",
+            href: "https://github.com/sysapps/app-uri/issues"
+          }, {
+            value: "Commit history.",
+            href: "https://github.com/sysapps/app-uri/commits/gh-pages"
+          }]
+        }]
+      }
+    </script>
+    <script>
+function hideWIP(elem){
+      elem.parentNode.parentNode.id = '';
+      elem.parentNode.id = '';
+      elem.style.display = 'none';
+    }
+    </script>
     <style>
-figcaption:before {
-            content:"Figure: ";
-            font-weight: bold;
+/**/
+    #wipcontainer {
+        position: fixed;
+        bottom: 0px;
+        margin: 0 0 0 -37.5%;
+        width: 75%;
+        left: 50%;
+        z-index: 1000;
+    }
+    #wip {
+        display: block;
+        color: white;
+        width: auto;
+        border: thin solid rgb(141, 0, 0);
+        border-bottom: none;
+        border-radius: 0.5em 0.5em 0 0;
+        box-shadow: 0 0 1em rgba(127, 127, 127, .5);
+        padding: 1em 8em 1.5em 8em;
+        margin: auto;
+    background: #a90329; /* Old browsers */
+    background: -moz-linear-gradient(top,  #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+
+        text-align: center;
+        font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 0.9em;
+        font-weight: 300;
+    }
+    @media print {
+      #wip{
+        display: none;
+      }
+    }
+    @media (max-width: 50em) {
+        #wipcontainer {
+            margin: 0 0 0 0;
+            left:0;
+            width: auto;
         }
-        figure table {
-            margin: auto;
-            border: 1px solid #aaa;
+        #wip {
+            padding: 1em 4em 1.5em 4em;
+            width: auto;
         }
-        figure td {
-            text-align: center;
-            padding: .25em .5em .25em .25em;
-            vertical-align: middle;
-        }
-    </style>
-    <link class="nopub" href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel=
-    "stylesheet">
-    <style>
-table {
-                        margin: auto;
-                        text-align: center;
-                        
-                }
-                td{
-                        vertical-align:bottom;
-                }
-    </style>
-    <style class="nopub">
-span{
-                border: 1px dotted green;
-        }
+    }
+    #wip strong {
+        font-weight: normal;
+        display: block;
+        text-transform: uppercase;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+        margin: 0.25em auto 0.5em auto;
+    }
+    #wip a {
+        color: #fff;
+    }
+    #wip a:hover {
+        background: transparent;
+    }
+    #wip strong:before, #wip strong:after {
+        position: relative;
+        content:'\26A0';
+        padding: 0 0.5em 0 0.5em;
+        text-shadow: none;
+        font-size: 1.25em;
+    }
+    #wip > input {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background: none;
+        border: none;
+        color: rgb(243, 245, 246);
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+        border: thin solid rgba(127, 127, 127, .0);
+        border-radius: .3em;
+    }
+    #wip > input:hover {
+        border: thin outset rgba(127, 127, 127, .5);
+    }
+    #wip > input:active {
+        border: thin inset rgba(127, 127, 127, .5);
+    }
     </style>
   </head>
   <body>
-    <div class="head">
-      <a href="http://www.w3.org/"><img alt="W3C" height="48" src=
-      "http://www.w3.org/Icons/w3c_home" width="72"></a>
-      <h1 class="no-num no-toc">
-        The app: URI scheme
-      </h1>
-      <h2 class="no-num no-toc" id=
-      "editor's-draft-last-updated-6-november-2013">
-        <span class="nopub">Editor's Draft- Last updated 6 November 2013</span>
-      </h2>
-      <dl class="nopub">
-        <dt>
-          This Version:
-        </dt>
-        <dd>
-          <a href=
-          "http://www.w3.org/2012/sysapps/app-uri/">http://www.w3.org/2012/sysapps/app-uri/</a>
-        </dd>
-        <dt>
-          Git Repo:
-        </dt>
-        <dd>
-          <a href=
-          "https://github.com/sysapps/app-uri">https://github.com/sysapps/app-uri</a>
-        </dd>
-        <dt>
-          Version history:
-        </dt>
-        <dd>
-          <a href="https://github.com/sysapps/app-uri/commits/gh-pages">Github
-          commits</a>
-        </dd>
-        <dt>
-          Bug tracker:
-        </dt>
-        <dd>
-          <a href="https://github.com/sysapps/app-uri/issues">Issue tracker on
-          github</a>
-        </dd>
-        <dt>
-          Test suite:
-        </dt>
-        <dd>
-          <a href=
-          "https://github.com/sysapps/testsuites/tree/gh-pages/app-URI">Tests
-          on Github.</a>
-        </dd>
-      </dl>
-      <div>
-        <p class="copyright">
-          <a href=
-          "http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-          © 2013 <a href="http://www.w3.org/"><abbr title=
-          "World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href=
-          "http://www.csail.mit.edu/"><abbr title=
-          "Massachusetts Institute of Technology">MIT</abbr></a>, <a href=
-          "http://www.ercim.eu/"><abbr title=
-          "European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-          <a href="http://www.keio.ac.jp/">Keio</a>, <a href=
-          "http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C
-          <a href=
-          "http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-          <a href=
-          "http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
-          and <a href=
-          "http://www.w3.org/Consortium/Legal/copyright-documents">document
-          use</a> rules apply.
+    <section id="abstract">
+      <div id="wipcontainer">
+        <p class="stability" id="wip">
+          <strong>This spec is for review only!</strong> This specification is
+          for review and not for implementation! For the latest updates,
+          including important bug fixes, please look at the <a href=
+          "http://app-uri.sysapps.org/">draft</a> instead. <input onclick=
+          "hideWIP(this)" value="×" type="button">
         </p>
-        <hr>
       </div>
-    </div>
-    <h2 class="no-num no-toc" id="abstract">
-      Abstract
-    </h2>
-    <p>
-      This specification defines the <code>app:</code> URI scheme and rules for
-      dereferencing an <code>app:</code> URI, which can be used to address
-      resources inside a package (e.g., a packaged application). The
-      dereferencing model relies on HTTP semantics to return resources in a
-      manner akin to a HTTP <code>GET</code> request. Doing so allows this URI
-      scheme to be used with other technologies that rely on HTTP responses to
-      function as intended, such as <a href="#xhr">[XHR]</a>.
-    </p>
-    <h2 class="no-num no-toc" id="status-of-this-document">
-      Status of This Document
-    </h2>
-    <p>
-      <em>This section describes the status of this document at the time of its
-      publication. Other documents may supersede this document. A list of
-      current W3C publications and the latest revision of this technical report
-      can be found in the <a href="http://www.w3.org/TR/">W3C technical reports
-      index</a> at http://www.w3.org/TR/.</em>
-    </p>
-    <p>
-      Implementors should be aware that this specification is not stable.
-      <strong>Implementors who are not taking part in the discussions are
-      likely to find the specification changing out from under them in
-      incompatible ways.</strong> Vendors interested in implementing this
-      specification before it eventually reaches the Candidate Recommendation
-      stage should join the aforementioned mailing lists and take part in the
-      discussions.
-    </p>
-    <!-- q.v. http://lists.w3.org/Archives/Public/public-html/2010Oct/0457.html -->
-    <script>
-function closeWarning(element) {
-    element.parentNode.removeChild(element);
-    var date = new Date();
-    date.setDate(date.getDate()+4);
-    document.cookie = 'hide-obsolescence-warning=1; expires=' + date.toGMTString();
-    }
-    if (getCookie('hide-obsolescence-warning') == '1')
-    setTimeout(function () { document.getElementById('wip').parentNode.removeChild(document.getElementById('wip')); }, 2000);
-    </script>
-    <p>
-      This is the First Public Working Draft of <cite>The app: URI
-      scheme</cite> specification. This document was produced by the <a href=
-      "http://www.w3.org/2012/sysapps/">System Applications Working Group</a>.
-      If you wish to make comments regarding this document, please send them to
-      <a href="mailto:public-sysapps@w3.org">public-sysapps@w3.org</a>
-      (<a href="mailto:public-sysapps-request@w3.org?subject=subscribe">subscribe</a>,
-      <a href=
-      "http://lists.w3.org/Archives/Public/public-sysapps/">archives</a>). All
-      feedback is welcome.
-    </p>
-    <p>
-      This document was produced by a group operating under the <a href=
-      "http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004
-      W3C Patent Policy</a>. W3C maintains a <a href=
-      "http://www.w3.org/2004/01/pp-impl/58119/status" rel="disclosure">public
-      list of any patent disclosures</a> made in connection with the
-      deliverables of the group; that page also includes instructions for
-      disclosing a patent. An individual who has actual knowledge of a patent
-      which the individual believes contains <a href=
-      "http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
-      Claim(s)</a> must disclose the information in accordance with <a href=
-      "http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
-      6 of the W3C Patent Policy</a>.
-    </p>
-    <h2 class="no-toc no-num" id="table-of-contents">
-      Table of Contents
-    </h2><!--begin-toc-->
-    <ol class="toc">
-      <li>
-        <a href="#introduction"><span class="secno">1</span> Introduction</a>
-      </li>
-      <li>
-        <a href="#example-of-usage"><span class="secno">2</span> Example of
-        usage</a>
-      </li>
-      <li>
-        <a href="#conformance"><span class="secno">3</span> Conformance</a>
-      </li>
-      <li>
-        <a href="#user-agent"><span class="secno">4</span> User agent</a>
-      </li>
-      <li>
-        <a href="#package"><span class="secno">5</span> Package</a>
-      </li>
-      <li>
-        <a href="#app-uri"><span class="secno">6</span> App URI</a>
-        <ol class="toc">
-          <li>
-            <a href="#synthesizing"><span class="secno">6.1</span> Synthesizing
-            an <code>app:</code> URI</a>
-          </li>
-          <li>
-            <a href="#the-authority-component"><span class="secno">6.2</span>
-            The authority component</a>
-          </li>
-          <li>
-            <a href="#query-and-fragment-components"><span class=
-            "secno">6.3</span> Query and Fragment components</a>
-          </li>
-          <li>
-            <a href=
-            "#dereferencing-and-retrieval-of-files-from-a-container"><span class="secno">
-            6.4</span> Dereferencing and retrieval of files from a
-            container</a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <a class="no-num" href="#privacy">Privacy and Security
-        Considerations</a>
-      </li>
-      <li>
-        <a class="usecases" href="#use-cases"><span class="secno">7</span> Use
-        Cases</a>
-      </li>
-      <li>
-        <a class="no-num" href="#acknowledgements">Acknowledgements</a>
-      </li>
-      <li>
-        <a class="no-num" href="#normative-references">Normative references</a>
-      </li>
-      <li>
-        <a class="no-num" href="#informative-references">Informative
-        references</a>
-      </li>
-    </ol><!--end-toc-->
-    <h2 id="introduction">
-      <span class="secno">1</span> Introduction
-    </h2>
-    <p>
-      <em>This section is non-normative.</em>
-    </p>
-    <p>
-      HTML applications that run locally on a file system have traditionally
-      relied on the <dfn id="file-url-scheme">file URL scheme</dfn> of <a href=
-      "#rfc1738">[RFC1738]</a> as a <a href=
-      "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
-      document's address</a>. Although usable in a great deal of cases, relying
-      on the <a href="#file-url-scheme">file URL scheme</a> has several serious
-      drawbacks:
-    </p>
-    <ul>
-      <li>
+      <p>
+        This specification defines the app: URL scheme.
+      </p>
+      <p>
+        The app: URL can be used by packaged applications to obtain resources
+        that are inside a container. These resources can then be used with web
+        platform features that accept URLs.
+      </p>
+    </section>
+    <section id="sotd">
+      <p>
+        <strong>Implementors should be aware that this specification is not
+        stable.</strong> Implementors who are not taking part in the
+        discussions are likely to find the specification changing out from
+        under them in incompatible ways. Vendors interested in implementing
+        this specification before it eventually reaches the Candidate
+        Recommendation stage should join the aforementioned mailing lists and
+        take part in the discussions.
+      </p>
+    </section>
+    <section>
+      <h2>
+        app: URL
+      </h2>
+      <p>
+        An <dfn>app: URL</dfn> is a [[!URL]] is used by package application to
+        address resources within their container (e.g., a .zip file).
+      </p>
+    </section>
+    <section>
+      <h2>
+        Instance identifier
+      </h2>
+      <p>
+        The <dfn>instance identifier</dfn> is a string that uniquely an
+        instance of a packaged application.
+      </p>
+      <p>
+        When the <a>instance identifier</a> is not provided by the developer, a
+        user agent MUST synthesize one. The structure and length of identifier
+        represented by the authority is application specific, but it MUST be
+        suitable to use as <code>Document</code>'s origin. See also <a href=
+        "#privacy">privacy and security considerations</a>.
+      </p>
+      <section id="privacy" class="informative">
+        <h3>
+          Privacy and Security Considerations
+        </h3>
         <p>
-          <strong>Lack of HTTP response semantics:</strong> meaning that it is
-          not possible to use, for instance, <a href="#xhr">[XHR]</a> to
-          retrieve resources from within a package.
+          Using unique identifiers (e.g., a <a href=
+          "tools.ietf.org/html/rfc4122">UUID</a>) as <a>instance identifier</a>
+          can be exploited by an adversary as a digital finger print. This can
+          allow a developer to, for example, restore cookies even if the user
+          has cleared cookies from a user agent. As such, if the user agent
+          relies on unique identifiers as the host component, then it should
+          provide end-users with a means of regenerating the authority
+          component. For instance, A user agent can the reset <a>instance
+          identifier</a> when the user clears the user agent's private data.
         </p>
-      </li>
-      <li>
         <p>
-          <strong>Security/privacy issues:</strong> on Unix systems, naive
-          implementations expose the username as part of the path, as well as
-          the full path on the file system to where a file is residing (e.g.,
-          "/Users/<strong>username</strong>/app/index.html"). In addition, the
-          <a href="#file-url-scheme">file URL scheme</a> potentially opens up
-          the ability for an attacker to address any file on the file system.
+          When <a href=
+          "http://fetch.spec.whatwg.org/#concept-fetch">fetching</a> data from
+          an app: URL, a user agent needs to make sure that only files that
+          were in the container can be accessed (i.e., those files should be
+          sand-boxed). User agents need to watch out for <a href=
+          "http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a> (or
+          similar) inside a container, which can attempt to trick the user
+          agent into accessing files that are on other parts of the file
+          system.
         </p>
-      </li>
-      <li>
-        <strong>Undefined security model:</strong> The HTML specification lacks
-        a security model definition for when the <a href=
-        "#file-url-scheme">file URL scheme</a> is used as a <a href=
+      </section>
+    </section>
+    <section class="informative">
+      <h3>
+        Fetching a resource from a container
+      </h3>
+      <p>
+        <a href="http://fetch.spec.whatwg.org/#concept-fetch">Fetching</a> is
+        application specific. For instance, [[FETCH]] defines how to <a href=
+        "http://fetch.spec.whatwg.org/#html-fetch">fetch resources for use with
+        HTML</a>.
+      </p>
+    </section>
+    <section>
+      <h3>
+        Obtaining a resource
+      </h3>
+      <p>
+        To <dfn>obtain a resource</dfn> using <var>URL</var> and
+        <var>origin</var>, run the steps below.
+      </p>
+      <ol>
+        <li>If <var>origin</var> does not match 
+        the <a>instance identifier</a> for this application, return failure and terminate this
+        algorithm.
+        </li>
+        <li>Let <var>path</var> be the <a href="http://url.spec.whatwg.org/#concept-url-path">path</a> of <var>URL</var>.
+        </li>
+        <li>Attempt to obtain the file at <var>path</var> within the container:
+          <ol>
+            <li>If attempting to access the resource at <var>path</var> results
+            in an error (e.g., not found, the file is corrupt, locked, etc.),
+            return failure.
+            </li>
+            <li>Otherwise, return the data of the resource at <var>path</var>.
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </section>
+    <section id="conformance">
+      <p>
+        There is one class of product that can claim conformance to this
+        specification: a <a>user agent</a>.
+      </p>
+      <p>
+        A <dfn>user agent</dfn> is an implementation of this specification.
+      </p>
+    </section>
+    <section id="usecases" class="appendix">
+      <h2>
+        Use Cases and examples
+      </h2>
+      <p>
+        For developers, this specification attempts to address the following
+        use cases:
+      </p>
+      <ol>
+        <li>Provide a URL scheme that is compatible with the features and
+        security model of [[HTML]], so that applications that are packaged can
+        make full use of web platform's capabilities. For example, the app: URL
+        scheme should be usable as a <a href=
         "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
-        document's address</a>, meaning that different user agents behave
-        inconsistently when content is loaded using the <a href=
-        "#file-url-scheme">file URL scheme</a> (e.g., same origin policy
-        doesn't apply, local storage areas of <a href=
-        "#webstorage">[WebStorage]</a> don't work as expected if at all, and so
-        on).
-      </li>
-    </ul>
-    <p>
-      As stated by <a href="#rfc1738">[RFC1738]</a>:
-    </p>
-    <blockquote>
-      <q>The <a href="#file-url-scheme">file URL scheme</a> is unusual in that
-      it does not specify an Internet protocol or access method for such files;
-      as such, its utility in network protocols between hosts is limited.</q>
-    </blockquote>
-    <p>
-      To overcome the above limitations of the <a href=
-      "#file-url-scheme"><code>file</code>: URL scheme</a>, this specification
-      standardizes the <a href="#app:-uri"><code>app:</code> URI</a> scheme and
-      <a href="#rules-for-dereferencing-an-app:-uri">rules for dereferencing an
-      <code>app:</code> URI</a>. As a replacement technology for the <a href=
-      "#file-url-scheme">file URL scheme</a>, the <code>app:</code> URIs serve
-      a number of functions:
-    </p>
-    <ol>
-      <li>
-        <p>
-          An <code>app:</code> URI is a safer alternative to the <a href=
-          "#file-url-scheme">file URL scheme</a>, as it does not allow
-          addressing outside a sand-boxed environment. Additionally, it does
-          not expose the location of a file on user's local device, nor their
-          username, as in the case with some Unix-based implementations.
-        </p>
-      </li>
-      <li>
-        <p>
-          An <code>app:</code> URI can serve as a <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
-          document's address</a>, which can serve as the <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a>
-          for <a href="#html">[HTML]</a> or <a href="#svg">[SVG]</a>
-          applications. This enables the use of many features that rely on the
-          <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#same-origin">same-origin
-          policy</a> (e.g., <a href="#webstorage">[WebStorage]</a>) and allows
-          a user agent to <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolve</a>
-          the attribute values of certain DOM elements (e.g., the
-          <code>img</code> element's <code>src</code> attribute).
-        </p>
-      </li>
-      <li>An <code>app:</code> URI provides a means to retrieve a file from
-      within a package using similar semantics to performing a <code>GET</code>
-      request over <a href="#http">[HTTP]</a>. This allows the
-      <code>app:</code> URI scheme to be used with other technologies that rely
-      on HTTP responses, such as <a href="#xhr">[XHR]</a>. It also allows the
-      DOM elements to respond accordingly based on how resources are loaded or
-      if a HTTP-like error occurs (e.g., firing an event when a resource is not
-      found, or access is denied for security reasons).
-      </li>
-    </ol>
-    <h2 id="example-of-usage">
-      <span class="secno">2</span> Example of usage
-    </h2>
-    <p>
-      <em>This section is non-normative.</em>
-    </p>
-    <figure>
-      <table>
-        <tr>
-          <td>
-            <p>
-              <img alt="package" height="32" src="images/gift.png" width=
-              "32"><br>
-              ToyApp.zip
-            </p>
-          </td>
-          <td>
-            <img alt="app1" height="32" src="images/toy1.png" width="32"><br>
-            running instance
-          </td>
-          <td>
-            <code>app://com.foo.bar/index.html</code>
-          </td>
-        </tr>
-      </table>
-      <figcaption>
-        Given an packaged application (ToyApp.zip), a user agent creates a
-        running instance with a unique <code>app:</code> URI.
-      </figcaption>
-    </figure>
-    <p>
-      Using then <code>app:</code> URI above, the following example shows
-      [HTML]'s <code>window.location</code> using then <a href=
-      "#app:-uri"><code>app:</code> URI</a>.
-    </p>
-    <pre>
+          document's address</a> so that it can serve as its <a href=
+          "http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a>,
+          and it should be compatible with APIs like [[XHR]].
+        </li>
+        <li>Provide fetching model that constrains retrieval of files to a
+        specific container.
+        </li>
+        <li>Provide an addressing scheme that is easy to work with - and that
+        developers are already accustomed to working with. The developer should
+        not be bothered as to whether they are using <code>http://</code> or
+        <code>app://</code> - the Web's capabilities and APIs need to just
+        work!
+        </li>
+      </ol>
+      <p>
+        The following example shows [HTML]'s <code>window.location</code> using
+        then app: URL.
+      </p>
+      <pre class="example highlight">
 &lt;!doctype html&gt;
 &lt;script&gt;
 //Example using HTML's Location object
@@ -391,30 +316,29 @@ console.log(loc.hash === "#example"); //true
 console.log(loc.port === ""); //true
 &lt;/script&gt;
 </pre>
-    <p>
-      This example shows an <a href="#app:-uri"><code>app:</code> URI</a> being
-      <a href=
-      "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolved</a>
-      in <a href="#html">[HTML]</a>.
-    </p>
-    <pre>
+      <p>
+        This example shows an app: URL being <a href=
+        "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolved</a>
+        in [[HTML]].
+      </p>
+      <pre class="example highlight">
 var img = document.createElement("img");
 
 //the following setter triggers HTML's resolve algorithm 
 img.src = "example.gif"; 
 
 //and the expected output: 
-console.log(img.src === "app://c13c6f30-ce25-11e0-9572-0800200c9a66/example.gif") //true
+console.log(img.src === "app://c13c6f30/example.gif") //true
 
 //Append the image to the document
 document.body.appendChild(img); 
 &lt;/script&gt;
 </pre>
-    <p>
-      This example shows a resource within a packaged application being
-      retrieved over <a href="#xhr">[XHR]</a>.
-    </p>
-    <pre>
+      <p>
+        This example shows a resource within a packaged application being
+        retrieved over [[XHR]].
+      </p>
+      <pre class="example highlight">
 function process() {
   // process the resulting data 
 }
@@ -423,477 +347,20 @@ var xhr = new XMLHttpRequest();
 xhr.onload = (hxr) =&gt; process (xhr.responseText);
 xhr.open( "GET", "playlist.json");
 xhr.send();
-</pre><!-- OddPage -->
-    <h2 id="conformance">
-      <span class="secno">3</span> Conformance
-    </h2>
-    <p>
-      Everything in this specification is normative except for sections
-      explicitly marked as non-normative, examples, and notes.
-    </p>
-    <p>
-      The key words <em class="rfc2119" title="must">must</em>, <em class=
-      "rfc2119" title="should">should</em>, <em class="rfc2119" title=
-      "recommended">recommended</em>, and <em class="rfc2119" title=
-      "optional">optional</em> in this specification are to be interpreted as
-      described in <a href="#rfc2119">[RFC2119</a>].
-    </p>
-    <p>
-      There is one class of product that can claim conformance to this
-      specification: a <a href="#user-agent-0">user agent</a>.
-    </p><!-- OddPage -->
-    <h2 id="user-agent">
-      <span class="secno">4</span> User agent
-    </h2>
-    <p>
-      A <dfn id="user-agent-0">user agent</dfn> is an implementation of this
-      specification that is able to <a href="#synthesizing-0" title=
-      "synthesizing">synthesize <code>app:</code> URIs</a> as well as <a href=
-      "#rules-for-dereferencing-an-app:-uri" title=
-      "rules for dereferencing an app: URI">dereference</a> them.
-    </p><!-- OddPage -->
-    <h2 id="package">
-      <span class="secno">5</span> Package
-    </h2>
-    <p>
-      A <dfn id="package-0">package</dfn> is the logical container that
-      contains the files being addressed via the <code>app:</code> uri scheme.
-    </p>
-    <h2 id="app-uri">
-      <span class="secno">6</span> App URI
-    </h2>
-    <p>
-      An <dfn id="app:-uri"><code>app:</code> URI</dfn> is a string that
-      conforms to the production of the following <a href="#abnf">[ABNF]</a>:
-    </p>
-    <pre>
-<dfn id="appuri">appuri</dfn> = scheme "://" <a href=
-"#dfn-authority">authority</a> <a href="#path">path</a> [ "?" <a href=
-"#query">query</a> ] [ "#" <a href="#fragment">fragment</a> ]
-<dfn id="scheme">scheme</dfn> = "app"
-<a href="#dfn-authority">authority</a> = 1*<a href=
-"#unreserved">unreserved</a> 
-  
-</pre>Where <code><a href="http://tools.ietf.org/html/rfc3986"><dfn id="path">
-    path</dfn></a></code>, <code><dfn id="query"><a href=
-    "http://tools.ietf.org/html/rfc3986#section-3.4">query</a></dfn></code>,
-    <code><dfn id="fragment"><a href=
-    "http://tools.ietf.org/html/rfc3986#section-3.5">fragment</a></dfn></code>,
-    and <code><dfn id="unreserved"><a href=
-    "http://tools.ietf.org/html/rfc3986#section-2.3">unreserved</a></dfn></code>
-    are defined in <a href="#iri">[IRI]</a>.
-    <h3 id="synthesizing">
-      <span class="secno">6.1</span> Synthesizing an <code>app:</code> URI
-    </h3>
-    <p>
-      When <dfn id="synthesizing-0">synthesizing</dfn> an <a href=
-      "#app:-uri"><code>app:</code> URI</a>, a user agent <em class=
-      "ct"><em class="rfc2119" title="must">MUST</em></em> generate a string
-      that conforms to <code><a href="#appuri">appuri</a></code>, and normalize
-      it using <a href=
-      "http://tools.ietf.org/html/rfc3987#section-5.3.2">syntax-based
-      normalization</a> as defined in <a href="#iri">[IRI]</a>.
-    </p>
-    <h3 id="the-authority-component">
-      <span class="secno">6.2</span> The authority component
-    </h3>
-    <p>
-      The <dfn id="dfn-authority">authority</dfn> is a unique identifier that
-      represents the instance of a software application that is making use of
-      then <code>app:</code> URI (e.g., in the case of a packaged application,
-      it represents an instance of an application).
-    </p>
-    <p>
-      The form and length of identifier represented by the authority is
-      application specific (e.g., it may be reset when the user clears the user
-      agent's private data, or can last until the application is uninstalled
-      from an end-user's device). See <span title="privacy">privacy and
-      security considerations</span>.
-    </p>
-    <p>
-      The reason for having a unique authority is, amongst other things, to
-      prevent multiple instances from overriding each other's data.
-    </p>
-    <h3 id="query-and-fragment-components">
-      <span class="secno">6.3</span> Query and Fragment components
-    </h3>
-    <p>
-      The <a href="http://url.spec.whatwg.org/#concept-url-query">query</a> and
-      <a href="http://url.spec.whatwg.org/#concept-url-fragment">fragment</a>
-      components, when present, complement the <a href=
-      "http://url.spec.whatwg.org/#concept-url-path">path</a> component in
-      identifying a resource within a package <span>[URL]</span>. However, when
-      <a href="#rules-for-dereferencing-an-app:-uri" title=
-      "rules for dereferencing an app: URI">dereferencing</a>, the
-      <code><a href="#query">query</a></code> and <code><a href=
-      "#fragment">fragment</a></code> components don't play any part in
-      locating a file inside of package.
-    </p>
-    <p>
-      For example, the following <code>app:</code> URIs all return the same
-      file (example.gif):
-    </p>
-    <ul>
-      <li>
-        <code>app://c1..66/example.gif?hello</code>
-      </li>
-      <li>
-        <code>app://c1..66/example.gif?hello=foo&amp;bar=baz</code>
-      </li>
-      <li>
-        <code>app://c1..66/example.gif?hello#hi-there</code>
-      </li>
-    </ul>
-    <h3 id="dereferencing-and-retrieval-of-files-from-a-container">
-      <span class="secno">6.4</span> Dereferencing and retrieval of files from
-      a container
-    </h3>
-    <p>
-      This section describes how a user agent retrieves files from inside a
-      container by dereferencing an <code>app:</code> URI, and how a <a href=
-      "#user-agent-0">user agent</a> handles error conditions (e.g., when a
-      file is not found). The purpose of this dereferencing model is to make
-      retrieval of files from a container "look and feel" like a HTTP request
-      (except the request and response are performed over "<code>app://</code>"
-      instead of "<code title="">http://</code>").
-    </p>
-    <p>
-      For simplicity, this specification does not define any means for cache
-      control for content inside a container (e.g., dealing with e-tags).
-      However, a user agent <em class="ct">MAY</em> implement [HTTP] <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13">cache
-      controls</a> if they so desire.
-    </p>
-    <p>
-      A <dfn id="response">response</dfn> means a <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">HTTP
-      response</a> and can include any HTTP <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6">response
-      fields</a> (e.g., the name of the user agent as the <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.38">Server:</a>)
-      and any <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html#sec7.1">entity
-      header fields</a> the user agent deems will be helpful to a developer
-      (e.g., <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">Content-Length</a>,
-      <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.29">Last-Modified</a>,
-      <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.18">Date</a>,
-      <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">Content-Encoding</a>,
-      <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.15">Content-MD5</a>).
-      In the case of an error in the request (i.e., <a href=
-      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10">status
-      codes</a> 500, 501, 400, 404), the user agent <em class="ct">MUST</em>
-      return an empty response body. Optionally, in case of an error in the
-      request, the user agent <em class="ct">SHOULD</em> provide the developer
-      with feedback indicating what error occurred (e.g., in an error console
-      or where network request information is available via the user agent's
-      developer tools).
-    </p>
-    <p>
-      To dereference a <code>app:</code> <span>URI</span> to a file in a app
-      package a <a>user agent</a> <em class="rfc2119" title="must">MUST</em>
-      apply the <a href="#rules-for-dereferencing-an-app:-uri">rules for
-      dereferencing an <code>app:</code> URI</a>.
-    </p>
-    <p class="note">
-      Note: A user agent can deference a URI scheme using other
-      means/technologies (e.g., a proxy or local web server), but the end
-      result needs to be indistinguishable from the result that would be
-      obtained by following the specification.
-    </p>
-    <p>
-      The <dfn id="rules-for-dereferencing-an-app:-uri">rules for dereferencing
-      an <code>app:</code> URI</dfn> are as follows:
-    </p>
-    <ol>
-      <li>
-        <p>
-          If the request is not a <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3">GET
-          request</a>, return a <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2">501
-          Not Implemented</a> <a href="#response">response</a> and terminate
-          this algorithm.
-        </p>
-      </li>
-      <li>
-        <p>
-          Ignore any <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.3">request
-          headers</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          Let <var>URI</var> be the value of the <a href="#http">[HTTP]</a>
-          <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.2">Request
-          URI</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">Resolve</a>
-          <em>URI</em> into an <a href=
-          "http://url.spec.whatwg.org/#concept-absolute-url">absolute URL</a>
-          using the document's origin as the base.
-        </p>
-      </li>
-      <li>
-        <p>
-          If the <em>URI</em> does not conform to the <code><a href=
-          "#appuri">appuri</a></code> ABNF, return a <a href="#http">[HTTP]</a>
-          <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400
-          Bad Request</a> <a href="#response">response</a> and terminate this
-          algorithm.
-        </p>
-      </li>
-      <li>
-        <p>
-          If the <em>URI</em> uses the scheme '<code>app</code>', but the
-          <a href="#dfn-authority">authority</a> does not match the one
-          assigned to this document, return a <a href="#http">[HTTP]</a>
-          <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403
-          Forbidden</a> <a href="#response">response</a> and terminate this
-          algorithm (i.e., prevent inter-application content access).
-        </p>
-      </li>
-      <li>
-        <p>
-          Let <var><a href="#path">path</a></var> be the <code><a href=
-          "#path">path</a></code> component of URI.
-        </p>
-      </li>
-      <li>
-        <p>
-          Let <var>potential-file</var> be the result of attempting locate the
-          file at <var><a href="#path">path</a></var>.
-        </p>
-      </li>
-      <li>
-        <p>
-          If <var>potential-file</var> is not found at the given path inside
-          the container, return a <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404
-          Not Found</a> <a href="#response">response</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          Otherwise, if retrieving <var>potential-file</var> results in an
-          error (e.g., the file is corrupt, locked, etc.), return a <a href=
-          "#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500
-          Internal Server Error</a> <a href="#response">response</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          Determine the <var>content-type</var> be checking if <a href=
-          "#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
-          header is present, otherwise use <a href="#sniff">[SNIFF]</a> or
-          other appropriate mechanism.
-        </p>
-      </li>
-      <li>
-        <p>
-          Return a <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200
-          OK</a> <a href="#response">response</a>, with the value of
-          <var>content-type</var> as the <a href="#http">[HTTP]</a> <a href=
-          "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Content-Type</a>
-          header, and with the contents of <var>potential-file</var> as the
-          response body.
-        </p>
-      </li>
-    </ol>
-    <h2 class="no-num" id="privacy">
-      Privacy and Security Considerations
-    </h2>
-    <p>
-      <em>This section is non-normative.</em>
-    </p>
-    <p>
-      Using unique identifiers (e.g., a UUID) as the host component of the
-      <code>app</code> URI scheme could be exploited as a digital finger print.
-      This can allow a developer to, for example, restore cookies even if the
-      user has cleared cookies from a user agent. As such, if the user agent
-      relies on uniqure identifiers as the host component, then it should
-      provide end-users with a means of regenerating the authority component.
-    </p>
-    <p>
-      When dereferencing an <code>app:</code> URI, a user agent needs to make
-      sure that only files that were in the package can be accessed (i.e.,
-      those files should be sand-boxed). User agents need to watch out for
-      <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a>
-      (or similar) inside a package, which can attempt to trick the user agent
-      into accessing files that are on other parts of the file system.
-    </p>
-    <p>
-      As this specification relies on the standardized heuristics for
-      determining the content type of files defined in the <a href=
-      "#sniff">[SNIFF]</a> specification, implementors need to consider the
-      security considerations discussed in the <a href="#sniff">[SNIFF]</a>
-      specification.
-    </p>
-    <h2 class="usecases" id="use-cases">
-      <span class="secno">7</span> Use Cases
-    </h2>
-    <p>
-      For developers, this specification attempts to address the following use
-      cases:
-    </p>
-    <ol>
-      <li>
-        <p>
-          Provide a URI scheme that is compatible with the features and
-          security model of [HTML], so that applications that are packaged can
-          make full use of <a href="#html">[HTML]</a>'s capabilities and those
-          of related technologies. For example, the <code>app:</code> uri
-          scheme should be usable as a <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#the-document's-address">
-          document's address</a> so that it can serve as its <a href=
-          "http://www.whatwg.org/specs/web-apps/current-work/#origin">origin</a>,
-          and it should be compatible with APIs that rely on <a href=
-          "#http">[HTTP]</a> responses, like <a href="#xhr">[XHR]</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          Provide a URI scheme that is secure, in that it is constrained to
-          just resources within a package.
-        </p>
-      </li>
-      <li>Provide an addressing scheme that is easy to work with - and that
-      developers are already accustomed to working with. The developer should
-      not be bothered as to whether they are using <code><a href=
-      "#http">http://</a></code> or <code>app://</code> - the Web's
-      capabilities and APIs need to just work!
-      </li>
-    </ol>
-    <h2 class="no-num" id="acknowledgements">
-      Acknowledgements
-    </h2>
-    <p>
-      The bulk of the text in this specifications was derived from the
-      <cite><a href="http://www.w3.org/TR/widgets-uri/">Widget URI
-      scheme</a></cite> specification. The Systems Application working group
-      acknowledge the hard work of the <a href=
-      "http://www.w3.org/2008/webapps/">Web Applications Working Group</a> in
-      laying down the foundations for this specification.
-    </p>
-    <p>
-      Thanks also to Robin Berjon, who helped edit this specification when it
-      was part of WebApps.
-    </p>
-    <p>
-      Graphic icons used some examples of this specification were created by
-      <a href="http://omercetin.deviantart.com/">Ömer ÇETİN</a> and are
-      available for use under a <a href=
-      "http://creativecommons.org/licenses/by/3.0/">Creative Commons
-      Attribution 3.0 license</a>.
-    </p>
-    <h2 class="no-num" id="normative-references">
-      Normative references
-    </h2>
-    <dl class="bibliography">
-      <dt>
-        <dfn id="abnf">[ABNF]</dfn>
-      </dt>
-      <dd>
-        <a href="http://www.ietf.org/rfc/rfc5234.txt"><cite>Augmented BNF for
-        Syntax Specifications: <abbr title=
-        "Augmented Backus-Naur Form">ABNF</abbr></cite></a>. IETF.
-      </dd>
-      <dt>
-        <dfn id="html">[HTML]</dfn>
-      </dt>
-      <dd class="nopub">
-        <cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML
-        Standard</a></cite>. WHATWG.
-      </dd>
-      <dt>
-        <dfn id="http">[HTTP]</dfn>
-      </dt>
-      <dd>
-        <a href="http://tools.ietf.org/html/rfc2616"><cite>Hypertext Transfer
-        Protocol -- HTTP/1.1</cite></a>. IETF.
-      </dd>
-      <dt>
-        <dfn id="rfc2119">[RFC2119]</dfn>
-      </dt>
-      <dd>
-        <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use
-        in RFCs to Indicate Requirement Levels</cite></a>. IETF.
-      </dd>
-      <dt>
-        <dfn id="iri">[IRI]</dfn>
-      </dt>
-      <dd>
-        <a href="http://tools.ietf.org/html/rfc3987"><cite>Internationalized
-        Resource Identifiers (IRIs)</cite></a>. IETF.
-      </dd>
-      <dt>
-        <dfn id="sniff">[SNIFF]</dfn>
-      </dt>
-      <dd>
-        <a href="http://mimesniff.spec.whatwg.org/"><cite>Media Type
-        Sniffing</cite></a>. WHATWG.
-      </dd>
-      <dt>
-        [URL]
-      </dt>
-      <dd>
-        <a href="http://url.spec.whatwg.org/"><cite>URL.</cite></a> WHATWG.
-      </dd>
-    </dl>
-    <h2 class="no-num" id="informative-references">
-      Informative references
-    </h2>
-    <dl class="bibliography">
-      <dt>
-        <dfn id="xhr">[XHR]</dfn>
-      </dt>
-      <dd>
-        <a href="http://www.w3.org/TR/XMLHttpRequest2/"><cite>XHR</cite></a>
-        (Work in progress). W3C.
-      </dd>
-      <dt>
-        <dfn id="rfc1738">[RFC1738]</dfn>
-      </dt>
-      <dd>
-        <a href="http://www.ietf.org/rfc/rfc1738.txt"><cite>Uniform Resource
-        Locators (URL)</cite></a> (Obsolete). IETF.
-      </dd>
-      <dt>
-        <dfn id="svg">[SVG]</dfn>
-      </dt>
-      <dd>
-        <a href="http://www.w3.org/TR/SVGTiny12/">Scalable Vector Graphics
-        (SVG) Tiny 1.2 Specification</a>. W3C.
-      </dd>
-      <dt>
-        <dfn id="uuid-spec" title="uuid-spec">[UUID]</dfn>
-      </dt>
-      <dd>
-        <a href="http://tools.ietf.org/html/rfc4122"><cite>A Universally Unique
-        Identifier (UUID) URN Namespace</cite></a>. IETF.
-      </dd>
-      <dt>
-        <dfn id="webstorage">[WebStorage]</dfn>
-      </dt>
-      <dd>
-        <a href="http://dev.w3.org/html5/webstorage/"><cite>Web
-        Storage</cite></a> (Work in Progress). W3C.
-      </dd>
-    </dl>
+</pre>
+    </section>
+    <section class="appendix">
+      <h2>
+        Acknowledgments
+      </h2>
+      <p>
+        The bulk of the text in this specifications was derived from the
+        <cite><a href="http://www.w3.org/TR/widgets-uri/">Widget URI
+        scheme</a></cite> specification. The Systems Application working group
+        acknowledge the hard work of the <a href=
+        "http://www.w3.org/2008/webapps/">Web Applications Working Group</a> in
+        laying down the foundations for this specification.
+      </p>
+    </section>
   </body>
 </html>
