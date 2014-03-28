@@ -345,7 +345,7 @@ function process() {
 }
 
 var xhr = new XMLHttpRequest();
-xhr.onload = (hxr) =&gt; process (xhr.responseText);
+xhr.onload = () =&gt; process(this.responseText);
 xhr.open( "GET", "playlist.json");
 xhr.send();
 </pre>
