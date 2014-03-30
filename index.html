@@ -156,7 +156,7 @@ function hideWIP(elem){
         This specification defines the app: URL scheme.
       </p>
       <p>
-        The app: URL schem can be used by packaged applications to obtain
+        The app: URL scheme can be used by packaged applications to obtain
         resources that are inside a container. These resources can then be 
         used with web platform features that accept URLs.
       </p>
@@ -177,8 +177,8 @@ function hideWIP(elem){
         app: URL
       </h2>
       <p>
-        An <dfn>app: URL</dfn> is a [[!URL]] is used by package application to
-        address resources within their container (e.g., a .zip file).
+        An <dfn>app: URL</dfn> is a [[!URL]] used by a packaged application to
+        address resources within its container (e.g., a .zip file).
       </p>
     </section>
     <section>
@@ -201,21 +201,21 @@ function hideWIP(elem){
           Privacy and Security Considerations
         </h3>
         <p>
-          Using unique identifiers (e.g., a <a href=
+          Using a unique identifier (e.g., a <a href=
           "tools.ietf.org/html/rfc4122">UUID</a>) as <a>instance identifier</a>
           can be exploited by an adversary as a digital finger print. This can
           allow a developer to, for example, restore cookies even if the user
           has cleared cookies from a user agent. As such, if the user agent
           relies on unique identifiers as the host component, then it should
           provide end-users with a means of regenerating the authority
-          component. For instance, A user agent can the reset <a>instance
+          component. For instance, a user agent can the reset <a>instance
           identifier</a> when the user clears the user agent's private data.
         </p>
         <p>
           When <a href=
           "http://fetch.spec.whatwg.org/#concept-fetch">fetching</a> data from
           an app: URL, a user agent needs to make sure that only files that
-          were in the container can be accessed (i.e., those files should be
+          were in the container can be accessed (i.e. those files should be
           sand-boxed). User agents need to watch out for <a href=
           "http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a> (or
           similar) inside a container, which can attempt to trick the user
