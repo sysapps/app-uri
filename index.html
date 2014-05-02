@@ -157,8 +157,8 @@ function hideWIP(elem){
       </p>
       <p>
         The app: URL scheme can be used by packaged applications to obtain
-        resources that are inside a container. These resources can then be 
-        used with web platform features that accept URLs.
+        resources that are inside a container. These resources can then be used
+        with web platform features that accept URLs.
       </p>
     </section>
     <section id="sotd">
@@ -177,8 +177,9 @@ function hideWIP(elem){
         app: URL
       </h2>
       <p>
-        An <dfn>app: URL</dfn> is a [[!URL]] used by a packaged application to
-        address resources within its container (e.g., a .zip file).
+        An <dfn>app: URL</dfn> is a [[!URL]] that can be used by a packaged
+        application to address resources within its container (e.g., a .zip
+        file).
       </p>
     </section>
     <section>
@@ -186,41 +187,31 @@ function hideWIP(elem){
         Instance identifier
       </h2>
       <p>
-        The <dfn>instance identifier</dfn> is a string that uniquely an
-        instance of a packaged application.
+        The <dfn>instance identifier</dfn> is a string that uniquely identifies
+        an instance of a packaged application.
       </p>
       <p>
         When the <a>instance identifier</a> is not provided by the developer, a
         user agent MUST synthesize one. The structure and length of identifier
         represented by the authority is application specific, but it MUST be
-        suitable to use as <code>Document</code>'s origin. See also <a href=
+        suitable to use as a <code>Document</code>'s origin. See also <a href=
         "#privacy">privacy and security considerations</a>.
       </p>
       <section id="privacy" class="informative">
         <h3>
-          Privacy and Security Considerations
+          Privacy Considerations
         </h3>
         <p>
-          Using a unique identifier (e.g., a <a href=
-          "tools.ietf.org/html/rfc4122">UUID</a>) as <a>instance identifier</a>
-          can be exploited by an adversary as a digital finger print. This can
-          allow a developer to, for example, restore cookies even if the user
-          has cleared cookies from a user agent. As such, if the user agent
-          relies on unique identifiers as the host component, then it should
-          provide end-users with a means of regenerating the authority
-          component. For instance, a user agent can the reset <a>instance
-          identifier</a> when the user clears the user agent's private data.
-        </p>
-        <p>
-          When <a href=
-          "http://fetch.spec.whatwg.org/#concept-fetch">fetching</a> data from
-          an app: URL, a user agent needs to make sure that only files that
-          were in the container can be accessed (i.e. those files should be
-          sand-boxed). User agents need to watch out for <a href=
-          "http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a> (or
-          similar) inside a container, which can attempt to trick the user
-          agent into accessing files that are on other parts of the file
-          system.
+          Using unique identifiers (e.g., a <a href=
+          "tools.ietf.org/html/rfc4122">UUID</a>) as an <a>instance
+          identifier</a> can be exploited by an adversary as a digital finger
+          print. This can allow a developer to, for example, restore cookies
+          even if the user has cleared cookies from a user agent. As such, if
+          the user agent relies on unique identifiers as the host component,
+          then it should provide end-users with a means of regenerating the
+          authority component. For instance, A user agent can the regenerate
+          the <a>instance identifier</a> when the user clears the user agent's
+          private data.
         </p>
       </section>
     </section>
@@ -229,38 +220,82 @@ function hideWIP(elem){
         Fetching a resource from a container
       </h3>
       <p>
-        <a href="http://fetch.spec.whatwg.org/#concept-fetch">Fetching</a> is
-        application specific. For instance, [[FETCH]] defines how to <a href=
-        "http://fetch.spec.whatwg.org/#html-fetch">fetch resources for use with
-        HTML</a>.
-      </p>
-    </section>
-    <section>
-      <h3>
-        Obtaining a resource
-      </h3>
-      <p>
-        To <dfn>obtain a resource</dfn> using <var>URL</var> and
-        <var>origin</var>, run the steps below.
+        To <dfn>fetch a resource using the app: URL</dfn> using a
+        <var>request</var> <a href=
+        "http://fetch.spec.whatwg.org/#concept-request">request</a>:
       </p>
       <ol>
-        <li>If <var>origin</var> does not match 
-        the <a>instance identifier</a> for this application, return failure and terminate this
-        algorithm.
+        <li>If <var title="">request</var>'s <a href=
+        "http://fetch.spec.whatwg.org/#concept-request-method">method</a> is
+        not `<code title="">GET</code>`, or if <var>origin</var> does not match
+        the <a>instance identifier</a> for this application, return a
+          <a href="http://fetch.spec.whatwg.org/#concept-network-error">network
+          error</a>.
         </li>
-        <li>Let <var>path</var> be the <a href="http://url.spec.whatwg.org/#concept-url-path">path</a> of <var>URL</var>.
+        <li>Let <var>path</var> be the <a href=
+        "http://url.spec.whatwg.org/#concept-url-path">path</a> of
+        <var>URL</var>.
         </li>
-        <li>Attempt to obtain the file at <var>path</var> within the container:
+        <li>Let <var>response</var> be a <a href=
+        "http://fetch.spec.whatwg.org/#concept-response">response</a>.
+        </li>
+        <li>If attempting to access the resource at <var>path</var> results in
+        an error (e.g., not found, the file is corrupt, locked, etc.), return a
+        <a href="http://fetch.spec.whatwg.org/#concept-network-error">network
+        error</a> and terminate this algorithm.
+        </li>
+        <li>If <var>request</var> includes a `<code>Range`</code> <a href=
+        "http://fetch.spec.whatwg.org/#concept-request-headers">header</a>:
           <ol>
-            <li>If attempting to access the resource at <var>path</var> results
-            in an error (e.g., not found, the file is corrupt, locked, etc.),
-            return failure.
-            </li>
-            <li>Otherwise, return the data of the resource at <var>path</var>.
+            <li>If the value of the `<code>Range`</code> header is a valid byte
+            range [[!HTTP11]]:
+              <ol>
+                <li>Set <var>response</var> <a href=
+                "http://fetch.spec.whatwg.org/#concept-response-body">body</a>
+                to be the data from <var>path</var> at the start and end of
+                `<code>Range</code>`.
+                </li>
+                <li>Set <var>response</var> <a href=
+                "http://fetch.spec.whatwg.org/#concept-response-status">status</a>
+                to 206.
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
+        <li>Otherwise, set the <var>response</var> <a href=
+        "http://fetch.spec.whatwg.org/#concept-response-body">body</a> to be
+        the data at <var>path</var>.
+        </li>
+        <li>Set the <var>response</var> <a href=
+        "http://fetch.spec.whatwg.org/#concept-response-headers">headers</a>:
+          <ol>
+            <li>`<code>Content-Length</code>`, computed as per [[!HTTP11]].
+            </li>
+            <li>`<code>Content-Type</code>`, the MIME type of the resource at
+            <var>path</var> computed as per [[!SNIFF]].
+            </li>
+          </ol>
+        </li>
+        <li>Return <var>response</var>.
+        </li>
       </ol>
+      <section>
+        <h3>
+          Security considerations
+        </h3>
+        <p>
+          When <a href=
+          "http://fetch.spec.whatwg.org/#concept-fetch">fetching</a> data from
+          an app: URL, a user agent needs to make sure that only files that
+          were in the container can be accessed (i.e., those files should be
+          sand-boxed). User agents need to watch out for <a href=
+          "http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a> (or
+          similar) inside a container, which can attempt to trick the user
+          agent into accessing files that are on other parts of the file
+          system.
+        </p>
+      </section>
     </section>
     <section id="conformance">
       <p>
@@ -273,7 +308,7 @@ function hideWIP(elem){
     </section>
     <section id="usecases" class="appendix">
       <h2>
-        Use Cases and examples
+        Use Cases
       </h2>
       <p>
         For developers, this specification attempts to address the following
@@ -298,7 +333,16 @@ function hideWIP(elem){
         <code>app://</code> - the Web's capabilities and APIs need to just
         work!
         </li>
+        <li>Support the ability to playback audio and video files within a
+        packaged web application, including the ability to seek without needing
+        to load the full resource.
+        </li>
       </ol>
+    </section>
+    <section class="appendix">
+      <h2>
+        Examples
+      </h2>
       <p>
         The following example shows [HTML]'s <code>window.location</code> using
         then app: URL.
@@ -348,6 +392,20 @@ var xhr = new XMLHttpRequest();
 xhr.onload = () =&gt; process(this.responseText);
 xhr.open( "GET", "playlist.json");
 xhr.send();
+</pre>
+      <p>
+        This example shows how an <a>app: URL</a> can be used in conjunction
+        with a HTTP `<code>Range`</code> header to request a range of bytes
+        from a file inside a package.
+      </p>
+      <pre class="example highlight">
+var url = "sample.mp3"; 
+var xhr = new XMLHttpRequest(); 
+xhr.open('GET', url, true); 
+xhr.responseType = "arraybuffer"; 
+xhr.setRequestHeader('Range', 'bytes=100-199'); 
+xhr.send(); 
+console.log(Uint8Array(xhr.response).byteLength === 100);// true
 </pre>
     </section>
     <section class="appendix">
