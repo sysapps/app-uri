@@ -351,7 +351,7 @@ function hideWIP(elem){
         Examples
       </h2>
       <p>
-        The following examples shows the results of using
+        The following example shows the results of using
         "app://com.foo.bar/index.html#example" as the document's location.
       </p>
       <pre class="example highlight">
@@ -371,8 +371,7 @@ console.log(loc.port === ""); //true
       <p>
         This example shows an app: URL being <a href=
         "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolved</a>
-        in [[HTML]].
-      </p>
+      in [[HTML]]. In this case, the <a>app: URL</a> has &quot;<span class="example highlight">c13c6f30</span>&quot; as the <a>instance identifier</a>. </p>
       <pre class="example highlight">
 var img = document.createElement("img");
 
@@ -391,7 +390,7 @@ document.body.appendChild(img);
         retrieved over [[XHR]].
       </p>
       <pre class="example highlight">
-function process() {
+function process(text) {
   // process the resulting data 
 }
 
