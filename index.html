@@ -195,14 +195,15 @@ function hideWIP(elem){
       </h2>
       <p>
         The <dfn>instance identifier</dfn> is a string that uniquely identifies
-        an instance of a packaged application.
+        an instance of a packaged application. It serves the role of the
+        authority component in a URI.
       </p>
       <p>
-        When the <a>instance identifier</a> is not provided by the developer, a
-        user agent MUST synthesize one. The structure and length of identifier
-        represented by the authority is application specific, but it MUST be
-        suitable to use as a <code>Document</code>'s [[!ORIGIN]]. See also
-        <a href="#privacy">privacy and security considerations</a>.
+        When the instance identifier is not provided by the developer, a user
+        agent MUST synthesize one. The structure and length of identifier
+        represented is application specific, but it MUST be suitable to use
+        along with the app: scheme as a <code>Document</code>'s [[!ORIGIN]].
+        See also <a href="#privacy">privacy and security considerations</a>.
       </p>
       <section id="privacy" class="informative">
         <h3>
@@ -371,7 +372,10 @@ console.log(loc.port === ""); //true
       <p>
         This example shows an app: URL being <a href=
         "http://www.whatwg.org/specs/web-apps/current-work/#resolve-a-url">resolved</a>
-      in [[HTML]]. In this case, the <a>app: URL</a> has &quot;<span class="example highlight">c13c6f30</span>&quot; as the <a>instance identifier</a>. </p>
+        in [[HTML]]. In this case, document's location is
+        "app://c13c6f30/index.htm". The random string "c13c6f30" serves as the
+        <a>instance identifier</a>.
+      </p>
       <pre class="example highlight">
 var img = document.createElement("img");
 
