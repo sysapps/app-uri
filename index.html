@@ -184,10 +184,34 @@ function hideWIP(elem){
         app: URL
       </h2>
       <p>
-        An <dfn>app: URL</dfn> is a [[!URL]] that can be used by a packaged
-        application to address resources within its container (e.g., a .zip
-        file).
+        An <dfn>app: URL</dfn> is a [[!URL]] whose <a href=
+        "http://url.spec.whatwg.org/#concept-url-scheme">scheme</a> component
+        is `app` (case-insensitive) and whose <a href=
+        "http://url.spec.whatwg.org/#concept-host">host</a> component is an
+        <a>instance identifier</a>. A user agent can use app: URLs to obtain
+        resources from within a packaged application (e.g., a .zip file).
       </p>
+      <div class="note">
+        <p>
+          Traditionally, the syntax of [[URI]]s were represented using [[ABNF]].
+          However, as few ever implemented ABNF parsers, validators, or
+          producers, and given how complicated [[ABNF]] is to decypher, it
+          turned out not to be very helpful to implemeters or readers. So,
+          nowawadays, we just restrict certain parts of the URL to values and
+          let the <a href="http://url.spec.whatwg.org/#concept-url-parser">URL
+          parser</a> spit out the right result.
+        </p>
+        <p>
+          For readers accustomed to seeing [[ABNF]] syntax representations of
+          [[URI]]s, the app URL would look like this:
+        </p>
+        <pre>
+        appurl = "app":" hier-part [ "?" query ] [ "#" fragment ]
+</pre>
+        <p>
+          The  [[URI]] specification defines what each component in the above [[ABNF]]   means.
+        </p>
+      </div>
     </section>
     <section>
       <h2>
